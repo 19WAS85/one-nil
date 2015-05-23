@@ -1,0 +1,14 @@
+{
+  "name": "one-nil",
+  "description": "A open-source football (soccer) managament game made with pure javascript",
+  "author": "Wagner Andrade <wagneras@live.com>",
+  "private": true,
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.2",
+    "chai": "^2.2.0",
+    "mocha": "^2.2.4"
+  }
+}
