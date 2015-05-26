@@ -1,8 +1,8 @@
 expect = require('chai').expect
 
-{ Action } = require('../index')
+{ MatchAction } = require('../index')
 
-describe 'Action', ->
+describe 'MatchAction', ->
 
   attacker = { attack: 10 }
   blocker = { defense: 5 }
@@ -11,7 +11,7 @@ describe 'Action', ->
   describe '#perform', ->
 
     describe 'when attacker is better', ->
-      action = new Action(attacker, blocker)
+      action = new MatchAction(attacker, blocker)
 
       describe 'in equality conditions', ->
         result = action.perform()
@@ -29,7 +29,7 @@ describe 'Action', ->
         it 'should not be success'#, -> expect(result.success).to.be.false
 
     describe 'when blocker is better', ->
-      action = new Action(attacker, bestBlocker)
+      action = new MatchAction(attacker, bestBlocker)
 
       describe 'in equality conditions', ->
         result = action.perform()
