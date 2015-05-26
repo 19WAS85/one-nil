@@ -15,18 +15,17 @@ loadToGetLimits = (func) ->
   min: min, max: max
 
 describe 'MathExtensions', ->
-  mathUtil = new MathUtil();
 
   describe '#rand', ->
 
     it 'should provide a random number between an interval', ->
-      limits = loadToGetLimits -> value = mathUtil.rand(5, 21)
+      limits = loadToGetLimits -> value = MathUtil.rand(5, 21)
       expect(limits.min).to.be.equal(5)
       expect(limits.max).to.be.equal(21)
 
   describe '#r20', ->
 
     it 'should provide a random numer between 1 and 20', ->
-      limits = loadToGetLimits -> value = mathUtil.r20()
+      limits = loadToGetLimits -> value = MathUtil.r20()
       expect(limits.min).to.be.equal(1)
       expect(limits.max).to.be.equal(20)
