@@ -30,6 +30,3 @@ describe 'MathExtensions', ->
       limits = loadToGetLimits -> value = mathUtil.r20()
       expect(limits.min).to.be.equal(1)
       expect(limits.max).to.be.equal(20)
-
-  describe '.randProvider', ->
-    it 'should be able to set a random provider'
