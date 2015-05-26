@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ MathExtensions } = require('../index')
+{ MathUtil } = require('../index')
 
 LOAD_EXECUTION = 1000
 
@@ -15,8 +15,8 @@ loadToGetLimits = (func) ->
   min: min, max: max
 
 describe 'MathExtensions', ->
-  mathExtensions = new MathExtensions(Math);
-  mathExtensions.perform()
+  mathUtil = new MathUtil(Math);
+  mathUtil.perform()
 
   describe '#rand', ->
 

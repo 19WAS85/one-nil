@@ -1,2 +1,2 @@
 module.exports.Action = require './lib/action'
-module.exports.MathExtensions = require './lib/math-extensions'
+module.exports.MathUtil = require './lib/math-util'
