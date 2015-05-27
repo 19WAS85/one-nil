@@ -16,14 +16,16 @@ describe 'MatchAction', ->
       describe 'in equality conditions', ->
         result = action.perform()
 
-        it 'should be success', -> expect(result.success).to.be.true
+        it 'should be success', ->
+          expect(result.success).to.be.true
 
       describe 'in better conditions', ->
         result = action.perform()
 
-        it 'should be success', -> expect(result.success).to.be.true
+        it 'should be success', ->
+          expect(result.success).to.be.true
 
-      describe 'in worser conditions', ->
+      describe 'in worst conditions', ->
         result = action.perform()
 
         it 'should not be success'#, -> expect(result.success).to.be.false
@@ -34,4 +36,5 @@ describe 'MatchAction', ->
       describe 'in equality conditions', ->
         result = action.perform()
 
-        it 'should not be success', -> expect(result.success).to.be.false
+        it 'should not be success', ->
+          expect(result.success).to.be.false
