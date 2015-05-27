@@ -1,8 +1,10 @@
+{ GameSystem } = require('../index')
+
 class GameSystemMath
 
-  @rand: (initial, final) ->
+  @randBetween: (initial, final) ->
     Math.floor(Math.random() * (final - initial + 1) + initial)
 
-  @r20: -> @rand(1, 20)
+  @rand: -> @randBetween(GameSystem.MIN_ATTR_VALUE, GameSystem.MAX_ATTR_VALUE)
 
 module.exports = GameSystemMath

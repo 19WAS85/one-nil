@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ GameSystemMath } = require('../index')
+{ GameSystem, GameSystemMath } = require('../index')
 
 LOAD_EXECUTION = 1000
 
@@ -16,16 +16,16 @@ loadToGetLimits = (func) ->
 
 describe 'GameSystemMath', ->
 
-  describe '.rand', ->
+  describe '.randBetween', ->
 
     it 'should provide a random number between an interval', ->
-      limits = loadToGetLimits -> value = GameSystemMath.rand(5, 21)
+      limits = loadToGetLimits -> value = GameSystemMath.randBetween(5, 21)
       expect(limits.min).to.be.equal(5)
       expect(limits.max).to.be.equal(21)
 
-  describe '.r20', ->
+  describe '.rand', ->
 
-    it 'should provide a random numer between 1 and 20', ->
-      limits = loadToGetLimits -> value = GameSystemMath.r20()
-      expect(limits.min).to.be.equal(1)
-      expect(limits.max).to.be.equal(20)
+    it 'should provide a random number between min and max attribute value', ->
+      limits = loadToGetLimits -> value = GameSystemMath.rand()
+      expect(limits.min).to.be.equal(GameSystem.MIN_ATTR_VALUE)
+      expect(limits.max).to.be.equal(GameSystem.MAX_ATTR_VALUE)
