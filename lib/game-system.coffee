@@ -8,4 +8,6 @@ class GameSystem
 
   @rand: -> @randBetween(@MIN_ATTR_VALUE, @MAX_ATTR_VALUE)
 
+  @mod: (value) -> Math.floor(value / 2 - @MAX_ATTR_VALUE / 4)
+
 module.exports = GameSystem
