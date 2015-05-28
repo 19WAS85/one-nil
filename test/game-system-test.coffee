@@ -22,10 +22,10 @@ describe 'GameSystem', ->
   describe 'constants', ->
 
     it 'should have max attribute value', ->
-      expect(GameSystem.MAX_ATTR_VALUE).to.be.equal(20)
+      expect(GameSystem.MAX_ATTR).to.be.equal(20)
 
     it 'should have min attribute value', ->
-      expect(GameSystem.MIN_ATTR_VALUE).to.be.equal(1)
+      expect(GameSystem.MIN_ATTR).to.be.equal(1)
 
   describe '#randBetween', ->
 
@@ -38,8 +38,8 @@ describe 'GameSystem', ->
 
     it 'should return a random number between min and max attribute value', ->
       limits = loadToGetLimits -> value = system.rand()
-      expect(limits.min).to.be.equal(GameSystem.MIN_ATTR_VALUE)
-      expect(limits.max).to.be.equal(GameSystem.MAX_ATTR_VALUE)
+      expect(limits.min).to.be.equal(GameSystem.MIN_ATTR)
+      expect(limits.max).to.be.equal(GameSystem.MAX_ATTR)
 
   describe '#attrMod', ->
 
@@ -55,7 +55,7 @@ describe 'GameSystem', ->
 
     describe 'in perfect conditions', ->
 
-      beforeEach -> system.rand = -> GameSystem.MAX_ATTR_VALUE
+      beforeEach -> system.rand = -> GameSystem.MAX_ATTR
 
       it 'should be success when attribute is better', ->
         expect(system.test(10, 8)).to.be.true
@@ -71,7 +71,7 @@ describe 'GameSystem', ->
 
     describe 'in worst conditions', ->
 
-      beforeEach -> system.rand = -> GameSystem.MIN_ATTR_VALUE
+      beforeEach -> system.rand = -> GameSystem.MIN_ATTR
 
       it 'should not be success when attribute is better', ->
         expect(system.test(10, 8)).to.be.false

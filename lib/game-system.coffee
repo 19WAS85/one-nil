@@ -1,16 +1,22 @@
 class GameSystem
 
-  @MIN_ATTR_VALUE = 1
-  @MAX_ATTR_VALUE = 20
+  @MIN_ATTR = 1
+  @MAX_ATTR = 20
+  @HALF_ATTR = @MAX_ATTR / 2
+  @FOURTH_ATTR = @MAX_ATTR / 4
 
   randBetween: (initial, final) ->
-    Math.floor(Math.random() * (final - initial + 1) + initial)
+    range = final - initial + 1
+    randomBase = Math.random() * range + initial
+    Math.floor(randomBase)
 
-  rand: -> @randBetween(GameSystem.MIN_ATTR_VALUE, GameSystem.MAX_ATTR_VALUE)
+  rand: -> @randBetween(GameSystem.MIN_ATTR, GameSystem.MAX_ATTR)
 
-  mod: (value) -> Math.floor(value / 2 - GameSystem.MAX_ATTR_VALUE / 4)
+  mod: (value) -> Math.floor(value / 2 - GameSystem.FOURTH_ATTR)
 
   test: (attribute, target) ->
-    @mod(attribute) + @rand() > GameSystem.MAX_ATTR_VALUE / 2 + @mod(target)
+    attributePlay = @rand() + @mod(attribute)
+    testDifficult = GameSystem.HALF_ATTR + @mod(target)
+    attributePlay > testDifficult
 
 module.exports = GameSystem
