@@ -1,40 +1,31 @@
 expect = require('chai').expect
 
-{ MatchAction } = require('../index')
+{ MatchAction, GameSystem } = require('../index')
 
 describe 'MatchAction', ->
-
-  attacker = { attack: 10 }
-  blocker = { defense: 5 }
-  bestBlocker = { defense: 15 }
+  attacker = { att: 10 }
+  blocker = { def: 5 }
+  bestBlocker = { def: 20 }
 
   describe '#perform', ->
 
-    describe 'when attacker is better', ->
-      action = new MatchAction(attacker, blocker)
+    describe 'in perfect conditions', ->
+      system = new GameSystem()
+      system.rand = -> 20
+      action = new MatchAction(system)
 
-      describe 'in equality conditions', ->
-        result = action.perform()
+      it 'should be success when attacker is better', ->
+        result = action.perform(attacker, blocker)
+        expect(result.success).to.be.true
 
-        it 'should be success', ->
-          expect(result.success).to.be.true
+      it 'should be success when blocker is better', ->
+        result = action.perform(attacker, bestBlocker)
+        expect(result.success).to.be.true
 
-      describe 'in better conditions', ->
-        result = action.perform()
+      it 'should not be success when blocker is the best and attacker worst'
 
-        it 'should be success', ->
-          expect(result.success).to.be.true
+    describe 'in worst conditions', ->
 
-      describe 'in worst conditions', ->
-        result = action.perform()
-
-        it 'should not be success'#, -> expect(result.success).to.be.false
-
-    describe 'when blocker is better', ->
-      action = new MatchAction(attacker, bestBlocker)
-
-      describe 'in equality conditions', ->
-        result = action.perform()
-
-        it 'should not be success', ->
-          expect(result.success).to.be.false
+      it 'should not be success when attacker is better'
+      it 'should not be success when blocker is better'
+      it 'should be success when blocker is worst and attacker best'

@@ -10,6 +10,7 @@ class GameSystem
 
   mod: (value) -> Math.floor(value / 2 - GameSystem.MAX_ATTR_VALUE / 4)
 
-  test: (attribute, target) -> @mod(attribute) + @rand() > target
+  test: (attribute, target) ->
+    @mod(attribute) + @rand() > GameSystem.MAX_ATTR_VALUE / 2 + @mod(target)
 
 module.exports = GameSystem

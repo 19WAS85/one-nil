@@ -1,10 +1,8 @@
-{ GameSystem } = require('../index')
-
 class MatchAction
 
-  constructor: (@attacker, @blocker) ->
+  constructor: (@gameSystem) ->
 
-  perform: ->
-    success: @attacker.attack > @blocker.defense
+  perform: (attacker, blocker) ->
+    success: @gameSystem.test(attacker.att, blocker.def)
 
 module.exports = MatchAction;
