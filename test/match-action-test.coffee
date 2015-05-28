@@ -4,8 +4,11 @@ expect = require('chai').expect
 
 describe 'MatchAction', ->
   attacker = { att: 10 }
+  bestAttacker = { att: 20 }
+  worstAttacker = { att: 1 }
   blocker = { def: 5 }
   bestBlocker = { def: 20 }
+  worstBlocker = { def: 1 }
 
   describe '#perform', ->
 
@@ -22,10 +25,23 @@ describe 'MatchAction', ->
         result = action.perform(attacker, bestBlocker)
         expect(result.success).to.be.true
 
-      it 'should not be success when blocker is the best and attacker worst'
+      it 'should not be success when blocker is the best and attacker worst', ->
+        result = action.perform(worstAttacker, bestBlocker)
+        expect(result.success).to.be.false
 
     describe 'in worst conditions', ->
+      system = new GameSystem()
+      system.rand = -> 1
+      action = new MatchAction(system)
 
-      it 'should not be success when attacker is better'
-      it 'should not be success when blocker is better'
-      it 'should be success when blocker is worst and attacker best'
+      it 'should not be success when attacker is better', ->
+        result = action.perform(attacker, blocker)
+        expect(result.success).to.be.false
+
+      it 'should not be success when blocker is better', ->
+        result = action.perform(attacker, bestBlocker)
+        expect(result.success).to.be.false
+
+      it 'should be success when blocker is worst and attacker best', ->
+        result = action.perform(bestAttacker, worstBlocker)
+        expect(result.success).to.be.true
