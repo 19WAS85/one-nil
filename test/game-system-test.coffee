@@ -33,12 +33,8 @@ describe 'GameSystem', ->
   describe '#attrMod', ->
 
     it 'should return the modificator of an attribute value', ->
-      expect(system.mod(20)).to.be.equal(5)
-      expect(system.mod(19)).to.be.equal(4)
-      expect(system.mod(11)).to.be.equal(0)
-      expect(system.mod(10)).to.be.equal(0)
-      expect(system.mod(7)).to.be.equal(-2)
-      expect(system.mod(1)).to.be.equal(-5)
+      Helpers.MOD_TABLE.forEach (e) ->
+        expect(system.mod(e[0])).to.be.equal(e[1])
 
   describe '#test', ->
 
@@ -47,13 +43,12 @@ describe 'GameSystem', ->
       beforeEach -> system.rand = -> GameSystem.MAX_ATTR
 
       it 'should be success when attribute is better', ->
-        expect(system.test(10, 8)).to.be.true
-        expect(system.test(15, 5)).to.be.true
+        expect(system.test(10, 9)).to.be.true
         expect(system.test(20, 1)).to.be.true
 
       it 'should be success when target is higher', ->
-        expect(system.test(8, 10)).to.be.true
-        expect(system.test(5, 15)).to.be.true
+        expect(system.test(9, 10)).to.be.true
+        expect(system.test(2, 20)).to.be.true
 
       it 'should not be success when attr is the worst againt max target', ->
         expect(system.test(1, 20)).to.be.false
@@ -63,13 +58,12 @@ describe 'GameSystem', ->
       beforeEach -> system.rand = -> GameSystem.MIN_ATTR
 
       it 'should not be success when attribute is better', ->
-        expect(system.test(10, 8)).to.be.false
-        expect(system.test(15, 5)).to.be.false
+        expect(system.test(10, 9)).to.be.false
+        expect(system.test(20, 2)).to.be.false
 
       it 'should not be success when target is higher', ->
-        expect(system.test(8, 10)).to.be.false
-        expect(system.test(5, 15)).to.be.false
         expect(system.test(1, 20)).to.be.false
+        expect(system.test(9, 10)).to.be.false
 
       it 'should be success when attr is max againt worst target', ->
         expect(system.test(20, 1)).to.be.true
