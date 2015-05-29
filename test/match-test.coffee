@@ -6,7 +6,9 @@ Helpers = require('./helpers/match-test-helpers')
 describe 'Match', ->
   home = Helpers.createPlayers('A', 15)
   away = Helpers.createPlayers('B', 5)
-  match = new Match(home, away)
+  match = null
+
+  beforeEach -> match = new Match(home, away)
 
   describe '#next', ->
 
@@ -32,5 +34,8 @@ describe 'Match', ->
       match.next()
       expect(match.status.blocker.name).to.contain('B')
 
-    it 'should provide field'
+    it 'should provide field', ->
+      match.next()
+      expect(match.status.field).to.be.equal(1)
+
     it 'should provide score'
