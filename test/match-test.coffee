@@ -1,4 +1,5 @@
 expect = require('chai').expect
+sinon = require('sinon')
 Helpers = require('./helpers/match-test-helpers')
 
 { Match } = require('../index')
@@ -6,9 +7,10 @@ Helpers = require('./helpers/match-test-helpers')
 describe 'Match', ->
   home = Helpers.createPlayers('A', 15)
   away = Helpers.createPlayers('B', 5)
+  move = { isValid: sinon.spy() }
   match = null
 
-  beforeEach -> match = new Match(home, away)
+  beforeEach -> match = new Match(home, away, [move])
 
   describe '#next', ->
 
@@ -38,4 +40,9 @@ describe 'Match', ->
       match.next()
       expect(match.status.field).to.be.equal(1)
 
+    it 'should select a valid move to play', ->
+      match.next()
+      expect(move.isValid.called).to.be.true
+
+    it 'should play selected move'
     it 'should provide score'
