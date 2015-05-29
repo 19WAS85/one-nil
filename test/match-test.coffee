@@ -1,9 +1,12 @@
 expect = require('chai').expect
+Helpers = require('./helpers/match-test-helpers')
 
 { Match } = require('../index')
 
 describe 'Match', ->
-  match = new Match()
+  home = Helpers.createPlayers('A', 15)
+  away = Helpers.createPlayers('B', 5)
+  match = new Match(home, away)
 
   describe '#next', ->
 
@@ -21,7 +24,13 @@ describe 'Match', ->
       match.next() until match.status.isGameOver
       expect(match.status.time).to.be.equal(90)
 
+    it 'should provide attacker', ->
+      match.next()
+      expect(match.status.attacker.name).to.contain('A')
+
+    it 'should provide blocker', ->
+      match.next()
+      expect(match.status.blocker.name).to.contain('B')
+
     it 'should provide field'
-    it 'should provide attacker'
-    it 'should provide blocker'
     it 'should provide score'
