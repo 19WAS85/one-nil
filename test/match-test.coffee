@@ -7,10 +7,12 @@ Helpers = require('./helpers/match-test-helpers')
 describe 'Match', ->
   home = Helpers.createPlayers('A', 15)
   away = Helpers.createPlayers('B', 5)
-  move = isValid: sinon.spy(-> yes), perform: sinon.spy()
+  move = null
   match = null
 
-  beforeEach -> match = new Match(home, away, [move])
+  beforeEach ->
+    move = isValid: sinon.spy(-> yes), perform: sinon.spy()
+    match = new Match(home, away, [move])
 
   describe '#next', ->
 
@@ -37,6 +39,7 @@ describe 'Match', ->
       expect(match.status.blocker.name).to.contain('B')
 
     it 'should provide field', ->
+      move.perform = (status) -> status.field++
       match.next()
       expect(match.status.field).to.be.equal(1)
 
