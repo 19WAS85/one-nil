@@ -3,17 +3,13 @@ class Match
   @MATCH_LENGTH = 90
 
   constructor: (@home, @away, @moves) ->
-    @status =
-      time: 0
-      field: 0
-      isGameOver: no
+    @status = time: 0, field: 0, isGameOver: no
 
   getNextMove: ->
     @moves.filter((m) -> m.isValid(@status))[0]
 
-
   next: ->
-    move = @getNextMove()
+    @getNextMove().perform(@status)
     @status.time++
     @status.field++;
     @status.attacker = @home[0]

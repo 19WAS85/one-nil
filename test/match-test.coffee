@@ -7,7 +7,7 @@ Helpers = require('./helpers/match-test-helpers')
 describe 'Match', ->
   home = Helpers.createPlayers('A', 15)
   away = Helpers.createPlayers('B', 5)
-  move = { isValid: sinon.spy() }
+  move = isValid: sinon.spy(-> yes), perform: sinon.spy()
   match = null
 
   beforeEach -> match = new Match(home, away, [move])
@@ -44,5 +44,8 @@ describe 'Match', ->
       match.next()
       expect(move.isValid.called).to.be.true
 
-    it 'should play selected move'
+    it 'should play selected move', ->
+      match.next()
+      expect(move.perform.called).to.be.true
+
     it 'should provide score'
