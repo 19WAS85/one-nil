@@ -48,4 +48,8 @@ describe 'Match', ->
       match.next()
       expect(move.perform.called).to.be.true
 
-    it 'should provide score'
+    it 'should provide score', ->
+      move.perform = (status) -> status.score.home++
+      match.next()
+      expect(match.status.score.home).to.be.equal(1)
+      expect(match.status.score.away).to.be.equal(0)
