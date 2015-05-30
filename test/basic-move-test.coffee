@@ -1,9 +1,14 @@
 expect = require('chai').expect
 
-{ BasicMove } = require('../index')
+{ BasicMove, GameSystem } = require('../index')
 
 describe 'BasicMove', ->
-  move = new BasicMove()
+  system = null
+  move = null
+
+  beforeEach ->
+    system = new GameSystem()
+    move = new BasicMove(system)
 
   describe '#isValid', ->
 
@@ -19,7 +24,14 @@ describe 'BasicMove', ->
 
     describe 'when attacker succeed', ->
 
-      it 'should move field'
+      beforeEach -> system.rand = -> 20
+
+      it 'should move field', ->
+        status = field: 0, attacker: { att: 20 }, blocker: { def: 1 }
+        move.perform(status)
+        expect(status.field).to.be.equal(1)
+
+      it 'should change attacker'
 
     describe 'when blocker succeed', ->
 
