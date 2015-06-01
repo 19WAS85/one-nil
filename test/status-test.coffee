@@ -3,17 +3,17 @@ expect = require('chai').expect
 { Status, GameSystem, Match } = require('../index')
 
 describe 'Status', ->
+  player = att: 12, def: 8
+  status = null
+  system = null
+
+  beforeEach ->
+    system = new GameSystem()
+    system.randElement = -> player
+    match = new Match(system)
+    status = new Status(match)
 
   describe '#constructor', ->
-    player = att: 12, def: 8
-    status = null
-    system = null
-
-    beforeEach ->
-      system = new GameSystem()
-      system.randElement = -> player
-      match = new Match(system)
-      status = new Status(match)
 
     it 'should have time zero', ->
       expect(status.time).to.be.equal(0)
@@ -33,3 +33,14 @@ describe 'Status', ->
 
     it 'should select a blocker', ->
       expect(status.blocker).to.be.equal(player)
+
+  describe '#next', ->
+
+    beforeEach -> status.next()
+
+    it 'should increase time', ->
+      expect(status.time).to.be.equal(1)
+
+    it 'should ckeck if match is over', ->
+      expect(status.isGameOver).to.be.false
+      status.next() until status.isGameOver

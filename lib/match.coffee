@@ -2,8 +2,6 @@
 
 class Match
 
-  @MATCH_LENGTH = 90
-
   constructor: (@system, @home, @away, @moves) ->
     @status = new Status(this)
 
@@ -12,7 +10,7 @@ class Match
 
   next: ->
     @getNextMove().perform(@status)
-    @status.time++
-    @status.isGameOver = @status.time >= Match.MATCH_LENGTH
+    @status.next()
+
 
 module.exports = Match
