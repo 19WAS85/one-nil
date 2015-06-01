@@ -1,15 +1,11 @@
+{ Status } = require('../index')
+
 class Match
 
   @MATCH_LENGTH = 90
 
-  constructor: (@home, @away, @moves) ->
-    @status =
-      time: 0
-      field: 0
-      isGameOver: no
-      score: { home: 0, away: 0 }
-      attacker: @home[0]
-      blocker: @away[0]
+  constructor: (@system, @home, @away, @moves) ->
+    @status = new Status(this)
 
   getNextMove: ->
     @moves.filter((m) -> m.isValid(@status))[0]

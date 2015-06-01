@@ -2,9 +2,10 @@ expect = require('chai').expect
 sinon = require('sinon')
 Helpers = require('./helpers/player-helpers')
 
-{ Match } = require('../index')
+{ Match, GameSystem } = require('../index')
 
 describe 'Match', ->
+  system = new GameSystem()
   home = Helpers.createPlayers('A', 15)
   away = Helpers.createPlayers('B', 5)
   move = null
@@ -12,7 +13,7 @@ describe 'Match', ->
 
   beforeEach ->
     move = isValid: sinon.spy(-> yes), perform: sinon.spy()
-    match = new Match(home, away, [move])
+    match = new Match(system, home, away, [move])
 
   describe '#next', ->
 
