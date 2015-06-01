@@ -1,6 +1,6 @@
 expect = require('chai').expect
 sinon = require('sinon')
-Helpers = require('./helpers/match-test-helpers')
+Helpers = require('./helpers/player-helpers')
 
 { Match } = require('../index')
 

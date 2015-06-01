@@ -67,3 +67,10 @@ describe 'GameSystem', ->
 
       it 'should be success when attr is max againt worst target', ->
         expect(system.test(20, 1)).to.be.true
+
+  describe '#randElement', ->
+
+    it 'should return a random element of an array', ->
+      limits = Helpers.loadToGetLimits -> system.randElement([1, 2, 3])
+      expect(limits.min).to.be.equal(1)
+      expect(limits.max).to.be.equal(3)

@@ -19,4 +19,6 @@ class GameSystem
     testDifficult = GameSystem.HALF_ATTR + @mod(target)
     attributePlay > testDifficult
 
+  randElement: (array) -> array[@randBetween(0, array.length - 1)]
+
 module.exports = GameSystem

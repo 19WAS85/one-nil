@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ BasicMove, GameSystem } = require('../index')
+{ BasicMove, GameSystem, Squad } = require('../index')
 
 describe 'BasicMove', ->
   system = null
@@ -23,15 +23,29 @@ describe 'BasicMove', ->
   describe '#perform', ->
 
     describe 'when attacker succeed', ->
+      attacker = att: 20
+      otherAttacker = att: 19
+      blocker = def: 1
+      status = null
 
-      beforeEach -> system.rand = -> 20
+      beforeEach ->
+        homeSquad = new Squad(system, [attacker, otherAttacker])
+        awaySquad = new Squad(system, [blocker])
+        status =
+          field: 0,
+          attacker: homeSquad.players[0],
+          blocker: awaySquad.getPlayer()
+        system.rand = -> 20
+        system.randElement = -> homeSquad.players[1]
 
       it 'should move field', ->
-        status = field: 0, attacker: { att: 20 }, blocker: { def: 1 }
         move.perform(status)
-        expect(status.field).to.be.equal(1)
+        expect(status.field).to.be.equal(5)
 
-      it 'should change attacker'
+      it 'should change attacker', ->
+        expect(status.attacker.player).to.be.equal(attacker)
+        move.perform(status)
+        expect(status.attacker.player).to.be.equal(otherAttacker)
 
     describe 'when blocker succeed', ->
 
