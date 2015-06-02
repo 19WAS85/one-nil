@@ -20,7 +20,7 @@ describe 'Finishing', ->
 
     beforeEach ->
       attacker = 'player'
-      status = score: home: 0, away: 0
+      status = field: 10, score: home: 0, away: 0
 
     describe 'when home attackers success', ->
 
@@ -44,6 +44,9 @@ describe 'Finishing', ->
         expect(status.score.home).to.be.equals(0)
         expect(status.score.away).to.be.equals(1)
 
+      it 'should reset field', ->
+        expect(status.field).to.be.equals(0)
+
     describe 'when blocker success', ->
 
       beforeEach ->
@@ -53,3 +56,6 @@ describe 'Finishing', ->
       it 'should not increase score value', ->
         expect(status.score.home).to.be.equals(0)
         expect(status.score.away).to.be.equals(0)
+
+      it 'should decrease field in 5', ->
+        expect(status.field).to.be.equals(5)
