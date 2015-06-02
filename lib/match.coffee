@@ -6,7 +6,8 @@ class Match
     @status = new Status(this)
 
   getNextMove: ->
-    @moves.filter((m) -> m.isValid(@status))[0]
+    status = @status
+    @moves.filter((m) -> m.isValid(status))[0]
 
   next: ->
     @getNextMove().perform(@status)

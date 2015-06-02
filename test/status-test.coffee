@@ -10,8 +10,8 @@ describe 'Status', ->
   status = null
 
   beforeEach ->
-    home = players: [player: player], getPlayer: -> player
-    away = players: [player: other], getPlayer: -> other
+    home = players: [player], getPlayer: -> player
+    away = players: [other], getPlayer: -> other
     system = test: sinon.spy()
     match = system: system, home: home, away: away
     status = new Status(match)
