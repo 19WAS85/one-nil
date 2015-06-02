@@ -16,16 +16,17 @@ describe 'Finishing', ->
       expect(move.isValid(field: 15)).to.be.false
 
   describe '#perform', ->
+    status = null
+
+    beforeEach ->
+      attacker = 'player'
+      status = score: home: 0, away: 0
 
     describe 'when home attackers success', ->
-      status = null
 
       beforeEach ->
-        attacker = 'player'
-        status =
-          score: home: 0, away: 0
-          testPlayers: -> true
-          isHomeAttacker: -> true
+        status.isHomeAttacker = -> true
+        status.testPlayers = -> true
         move.perform(status)
 
       it 'should increase score value to home', ->
@@ -34,8 +35,21 @@ describe 'Finishing', ->
 
     describe 'when away attackers success', ->
 
-      it 'should increase score value to away'
+      beforeEach ->
+        status.isHomeAttacker = -> false
+        status.testPlayers = -> true
+        move.perform(status)
+
+      it 'should increase score value to away', ->
+        expect(status.score.home).to.be.equals(0)
+        expect(status.score.away).to.be.equals(1)
 
     describe 'when blocker success', ->
 
-      it 'should not increase score value'
+      beforeEach ->
+        status.testPlayers = -> false
+        move.perform(status)
+
+      it 'should not increase score value', ->
+        expect(status.score.home).to.be.equals(0)
+        expect(status.score.away).to.be.equals(0)
