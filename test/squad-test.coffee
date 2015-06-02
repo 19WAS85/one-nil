@@ -1,22 +1,28 @@
 expect = require('chai').expect
-Helpers = require('./helpers/player-helpers')
+sinon = require('sinon')
 
-{ Squad, GameSystem } = require('../index')
+{ Squad } = require('../index')
 
 describe 'Squad', ->
-  players = Helpers.createPlayers('P', 10)
-  squad = new Squad(new GameSystem(), players)
+  system = null
+  squad = null
+
+  beforeEach ->
+    players = [{ }, { }]
+    system = randElement: sinon.spy()
+    squad = new Squad(system, players)
 
   describe '#players', ->
 
     it 'should have a list of players', ->
-      expect(squad.players.length).to.be.equal(11)
+      expect(squad.players.length).to.be.equal(2)
 
     it 'each player should references squad', ->
       expect(squad.players[0].squad).to.be.equal(squad)
-      expect(squad.players[10].squad).to.be.equal(squad)
+      expect(squad.players[1].squad).to.be.equal(squad)
 
   describe '#getPlayer', ->
 
-    it 'should return an attacker player', ->
-      expect(squad.getPlayer().player.name).to.contain('P')
+    it 'should return an player', ->
+      squad.getPlayer()
+      expect(system.randElement.calledWith(squad.players)).to.be.true

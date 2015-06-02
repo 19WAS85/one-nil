@@ -1,17 +1,16 @@
 expect = require('chai').expect
 sinon = require('sinon')
-Helpers = require('./helpers/player-helpers')
 
-{ Match, GameSystem, Squad } = require('../index')
+{ Match } = require('../index')
 
 describe 'Match', ->
-  system = new GameSystem()
-  home = new Squad(system, Helpers.createPlayers('A', 15))
-  away = new Squad(system, Helpers.createPlayers('B', 5))
   move = null
   match = null
 
   beforeEach ->
+    system = { }
+    home = getPlayer: -> 'player'
+    away = getPlayer: -> 'other'
     move = isValid: sinon.spy(-> yes), perform: sinon.spy()
     match = new Match(system, home, away, [move])
 
@@ -33,11 +32,11 @@ describe 'Match', ->
 
     it 'should provide attacker', ->
       match.next()
-      expect(match.status.attacker.player.name).to.contain('A')
+      expect(match.status.attacker).to.be.equal('player')
 
     it 'should provide blocker', ->
       match.next()
-      expect(match.status.blocker.player.name).to.contain('B')
+      expect(match.status.blocker).to.contain('other')
 
     it 'should provide field', ->
       move.perform = (status) -> status.field++
