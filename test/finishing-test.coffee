@@ -18,8 +18,19 @@ describe 'Finishing', ->
   describe '#perform', ->
 
     describe 'when home attackers success', ->
+      status = null
 
-      it 'should increase score value to home'
+      beforeEach ->
+        attacker = 'player'
+        status =
+          score: home: 0, away: 0
+          testPlayers: -> true
+          isHomeAttacker: -> true
+        move.perform(status)
+
+      it 'should increase score value to home', ->
+        expect(status.score.home).to.be.equals(1)
+        expect(status.score.away).to.be.equals(0)
 
     describe 'when away attackers success', ->
 

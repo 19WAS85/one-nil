@@ -22,4 +22,8 @@ class Status
     @attacker = @blocker
     @blocker = aux
 
+  isHomeAttacker: ->
+    homePlayers = @match.home.players.map((p) -> p.player)
+    homePlayers.indexOf(@attacker) != -1
+
 module.exports = Status

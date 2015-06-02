@@ -4,14 +4,14 @@ sinon = require('sinon')
 { Status } = require('../index')
 
 describe 'Status', ->
-  player = player: { att: 10 }
-  other = player: { def: 12 }
+  player = player: att: 10
+  other = player: def: 12
   match = null
   status = null
 
   beforeEach ->
-    home = getPlayer: -> player
-    away = getPlayer: -> other
+    home = players: [player: player], getPlayer: -> player
+    away = players: [player: other], getPlayer: -> other
     system = test: sinon.spy()
     match = system: system, home: home, away: away
     status = new Status(match)
@@ -63,3 +63,12 @@ describe 'Status', ->
     it 'should switch attacker and blocker', ->
       expect(status.attacker).to.be.equal(other)
       expect(status.blocker).to.be.equal(player)
+
+  describe '#isHomeAttacker', ->
+
+    it 'should be true when attacker is from home squad', ->
+      expect(status.isHomeAttacker()).to.be.true
+
+    it 'should be false when attacker is from away squad', ->
+      status.swapPlayers()
+      expect(status.isHomeAttacker()).to.be.false

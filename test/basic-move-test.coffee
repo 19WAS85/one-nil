@@ -21,14 +21,14 @@ describe 'BasicMove', ->
 
   describe '#perform', ->
     status = null
-    attacker = squad: { getPlayer: -> 'other' }
-    blocker = squad: { getPlayer: -> 'another' }
+    attacker = squad: getPlayer: -> 'other'
+    blocker = squad: getPlayer: -> 'another'
 
     beforeEach ->
       status =
-        field: 5,
-        attacker: attacker,
-        blocker: blocker,
+        field: 5
+        attacker: attacker
+        blocker: blocker
         swapPlayers: sinon.spy()
 
     describe 'when attacker succeed', ->
