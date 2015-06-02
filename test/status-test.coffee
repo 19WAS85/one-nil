@@ -1,17 +1,19 @@
 expect = require('chai').expect
+sinon = require('sinon')
 
-{ Status, GameSystem, Match, Squad } = require('../index')
+{ Status } = require('../index')
 
 describe 'Status', ->
-  player = att: 12, def: 8
+  player = player: { att: 10 }
+  other = player: { def: 12 }
+  match = null
   status = null
-  system = null
 
   beforeEach ->
-    system = new GameSystem()
-    squad = new Squad(system, [])
-    match = new Match(system, squad, squad)
-    system.randElement = -> player
+    home = getPlayer: -> player
+    away = getPlayer: -> other
+    system = test: sinon.spy()
+    match = system: system, home: home, away: away
     status = new Status(match)
 
   describe '#constructor', ->
@@ -33,7 +35,7 @@ describe 'Status', ->
       expect(status.attacker).to.be.equal(player)
 
     it 'should select a blocker', ->
-      expect(status.blocker).to.be.equal(player)
+      expect(status.blocker).to.be.equal(other)
 
   describe '#next', ->
 
@@ -48,21 +50,16 @@ describe 'Status', ->
 
   describe '#testPlayers', ->
 
-    beforeEach ->
-      system.rand = -> 20
-      status.attacker = player: { att: 20 }
-      status.blocker = player: { def: 1 }
+    beforeEach -> status.testPlayers()
 
     it 'should test attacker against blocker', ->
-      expect(status.testPlayers()).to.be.true
+      expect(match.system.test.called).to.be.true
 
   describe '#swapPlayers', ->
 
     beforeEach ->
-      status.attacker = 'player'
-      status.blocker = 'other'
       status.swapPlayers()
 
     it 'should switch attacker and blocker', ->
-      expect(status.attacker).to.be.equal('other')
-      expect(status.blocker).to.be.equal('player')
+      expect(status.attacker).to.be.equal(other)
+      expect(status.blocker).to.be.equal(player)
