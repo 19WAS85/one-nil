@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/wandrade/.nvm/v0.10.33/bin/node',
+1 verbose cli   '/Users/wandrade/.nvm/v0.10.33/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'test-watch' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose run-script [ 'pretest-watch', 'test-watch', 'posttest-watch' ]
+5 info pretest-watch one-nil@
+6 info test-watch one-nil@
+7 verbose unsafe-perm in lifecycle true
+8 info one-nil@ Failed to exec test-watch script
+9 error one-nil@ test-watch: `npm test --watch --reporter min`
+9 error Exit status 34
+10 error Failed at the one-nil@ test-watch script.
+10 error This is most likely a problem with the one-nil package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     npm test --watch --reporter min
+10 error You can get their info via:
+10 error     npm owner ls one-nil
+10 error There is likely additional logging output above.
+11 error System Darwin 13.4.0
+12 error command "/Users/wandrade/.nvm/v0.10.33/bin/node" "/Users/wandrade/.nvm/v0.10.33/bin/npm" "run" "test-watch"
+13 error cwd /Users/wandrade/Code/one-nil
+14 error node -v v0.10.33
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]
