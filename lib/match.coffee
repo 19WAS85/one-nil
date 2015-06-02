@@ -12,5 +12,4 @@ class Match
     @getNextMove().perform(@status)
     @status.next()
 
-
 module.exports = Match

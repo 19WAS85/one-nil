@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ BasicMove, GameSystem, Squad } = require('../index')
+{ BasicMove, GameSystem, Match, Squad, Status } = require('../index')
 
 describe 'BasicMove', ->
   system = null
@@ -31,10 +31,8 @@ describe 'BasicMove', ->
       beforeEach ->
         homeSquad = new Squad(system, [attacker, otherAttacker])
         awaySquad = new Squad(system, [blocker])
-        status =
-          field: 0,
-          attacker: homeSquad.players[0],
-          blocker: awaySquad.getPlayer()
+        match = new Match(system, homeSquad, awaySquad)
+        status = new Status(match)
         system.rand = -> 20
         system.randElement = -> homeSquad.players[1]
 
