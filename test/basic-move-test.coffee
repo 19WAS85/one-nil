@@ -1,13 +1,12 @@
 expect = require('chai').expect
+sinon = require('sinon')
 
-{ BasicMove, GameSystem, Match, Squad, Status } = require('../index')
+{ BasicMove } = require('../index')
 
 describe 'BasicMove', ->
-  system = null
   move = null
 
   beforeEach ->
-    system = new GameSystem()
     move = new BasicMove()
 
   describe '#isValid', ->
@@ -23,27 +22,20 @@ describe 'BasicMove', ->
   describe '#perform', ->
 
     describe 'when attacker succeed', ->
-      attacker = att: 20
-      otherAttacker = att: 19
-      blocker = def: 1
       status = null
 
       beforeEach ->
-        homeSquad = new Squad(system, [attacker, otherAttacker])
-        awaySquad = new Squad(system, [blocker])
-        match = new Match(system, homeSquad, awaySquad)
-        status = new Status(match)
-        system.rand = -> 20
-        system.randElement = -> homeSquad.players[1]
+        status = field: 0,
+        testPlayers: sinon.spy(-> true),
+        attacker: { squad: { getPlayer: -> 'other' } }
 
       it 'should move field', ->
         move.perform(status)
         expect(status.field).to.be.equal(5)
 
       it 'should change attacker', ->
-        expect(status.attacker.player).to.be.equal(attacker)
         move.perform(status)
-        expect(status.attacker.player).to.be.equal(otherAttacker)
+        expect(status.attacker).to.be.equal('other')
 
     describe 'when blocker succeed', ->
 
