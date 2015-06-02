@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ Status, GameSystem, Match } = require('../index')
+{ Status, GameSystem, Match, Squad } = require('../index')
 
 describe 'Status', ->
   player = att: 12, def: 8
@@ -10,7 +10,8 @@ describe 'Status', ->
   beforeEach ->
     system = new GameSystem()
     system.randElement = -> player
-    match = new Match(system)
+    squad = new Squad(system, [])
+    match = new Match(system, squad, squad)
     status = new Status(match)
 
   describe '#constructor', ->

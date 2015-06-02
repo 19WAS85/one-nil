@@ -2,12 +2,12 @@ expect = require('chai').expect
 sinon = require('sinon')
 Helpers = require('./helpers/player-helpers')
 
-{ Match, GameSystem } = require('../index')
+{ Match, GameSystem, Squad } = require('../index')
 
 describe 'Match', ->
   system = new GameSystem()
-  home = Helpers.createPlayers('A', 15)
-  away = Helpers.createPlayers('B', 5)
+  home = new Squad(system, Helpers.createPlayers('A', 15))
+  away = new Squad(system, Helpers.createPlayers('B', 5))
   move = null
   match = null
 
@@ -33,11 +33,11 @@ describe 'Match', ->
 
     it 'should provide attacker', ->
       match.next()
-      expect(match.status.attacker.name).to.contain('A')
+      expect(match.status.attacker.player.name).to.contain('A')
 
     it 'should provide blocker', ->
       match.next()
-      expect(match.status.blocker.name).to.contain('B')
+      expect(match.status.blocker.player.name).to.contain('B')
 
     it 'should provide field', ->
       move.perform = (status) -> status.field++
