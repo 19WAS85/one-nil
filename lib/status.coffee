@@ -17,4 +17,9 @@ class Status
   testPlayers: ->
     @match.system.test(@attacker.player.att, @blocker.player.def)
 
+  swapPlayers: ->
+    aux = @attacker
+    @attacker = @blocker
+    @blocker = aux
+
 module.exports = Status

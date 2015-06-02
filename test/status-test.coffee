@@ -55,3 +55,14 @@ describe 'Status', ->
 
     it 'should test attacker against blocker', ->
       expect(status.testPlayers()).to.be.true
+
+  describe '#swapPlayers', ->
+
+    beforeEach ->
+      status.attacker = 'player'
+      status.blocker = 'other'
+      status.swapPlayers()
+
+    it 'should switch attacker and blocker', ->
+      expect(status.attacker).to.be.equal('other')
+      expect(status.blocker).to.be.equal('player')

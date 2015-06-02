@@ -20,24 +20,40 @@ describe 'BasicMove', ->
       expect(move.isValid(field: 25)).to.be.false
 
   describe '#perform', ->
+    status = null
+    attacker = squad: { getPlayer: -> 'other' }
+    blocker = squad: { getPlayer: -> 'another' }
+
+    beforeEach ->
+      status =
+        field: 5,
+        attacker: attacker,
+        blocker: blocker,
+        swapPlayers: sinon.spy()
 
     describe 'when attacker succeed', ->
-      status = null
 
       beforeEach ->
-        status = field: 0,
-        testPlayers: sinon.spy(-> true),
-        attacker: { squad: { getPlayer: -> 'other' } }
+        status.testPlayers = -> true
+        move.perform(status)
 
       it 'should move field', ->
-        move.perform(status)
-        expect(status.field).to.be.equal(5)
+        expect(status.field).to.be.equal(10)
 
       it 'should change attacker', ->
-        move.perform(status)
         expect(status.attacker).to.be.equal('other')
+
+      it 'should change blocker', ->
+        expect(status.blocker).to.be.equal('another')
 
     describe 'when blocker succeed', ->
 
-      it 'should reset field'
-      it 'should swap players'
+      beforeEach ->
+        status.testPlayers = -> false
+        move.perform(status)
+
+      it 'should reset field', ->
+        expect(status.field).to.be.equal(0)
+
+      it 'should swap players', ->
+        expect(status.swapPlayers.called).to.be.true

@@ -9,5 +9,9 @@ class BasicMove
     if status.testPlayers()
       status.field += BasicMove.FIELD_GAIN
       status.attacker = status.attacker.squad.getPlayer()
+      status.blocker = status.blocker.squad.getPlayer()
+    else
+      status.field = 0
+      status.swapPlayers()
 
 module.exports = BasicMove
