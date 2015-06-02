@@ -10,10 +10,11 @@ class Status
     @attacker = @match.home.getPlayer()
     @blocker = @match.away.getPlayer()
 
-  # TODO: create methods to match and moves
-
   next: ->
     @time++
     @isGameOver = @time >= Status.MATCH_LENGTH
+
+  testPlayers: ->
+    @match.system.test(@attacker.player.att, @blocker.player.def)
 
 module.exports = Status

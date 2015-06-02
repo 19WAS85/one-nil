@@ -9,9 +9,9 @@ describe 'Status', ->
 
   beforeEach ->
     system = new GameSystem()
-    system.randElement = -> player
     squad = new Squad(system, [])
     match = new Match(system, squad, squad)
+    system.randElement = -> player
     status = new Status(match)
 
   describe '#constructor', ->
@@ -45,3 +45,13 @@ describe 'Status', ->
     it 'should ckeck if match is over', ->
       expect(status.isGameOver).to.be.false
       status.next() until status.isGameOver
+
+  describe '#testPlayers', ->
+
+    beforeEach ->
+      system.rand = -> 20
+      status.attacker = player: { att: 20 }
+      status.blocker = player: { def: 1 }
+
+    it 'should test attacker against blocker', ->
+      expect(status.testPlayers()).to.be.true

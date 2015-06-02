@@ -8,7 +8,7 @@ describe 'BasicMove', ->
 
   beforeEach ->
     system = new GameSystem()
-    move = new BasicMove(system)
+    move = new BasicMove()
 
   describe '#isValid', ->
 
