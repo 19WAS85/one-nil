@@ -1,6 +1,6 @@
 class Helpers
 
-  @LOAD_SIZE = 1000
+  @LOAD_SIZE = 10000
 
   @MOD_TABLE = [
     [20, 5], [19, 4], [18, 4], [17, 3], [16, 3],

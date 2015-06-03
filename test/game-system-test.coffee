@@ -79,4 +79,4 @@ describe 'GameSystem', ->
 
     it 'should return a random bolean based in a 1/n proportion', ->
       percent = Helpers.loadPercentOfTrue -> system.oneIn(3)
-      expect(percent).to.be.within(0.3, 0.365)
+      expect(percent).to.be.within(0.31, 0.35)
