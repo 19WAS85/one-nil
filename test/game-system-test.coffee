@@ -74,3 +74,9 @@ describe 'GameSystem', ->
       limits = Helpers.loadToGetLimits -> system.randElement([1, 2, 3])
       expect(limits.min).to.be.equal(1)
       expect(limits.max).to.be.equal(3)
+
+  describe '#oneIn', ->
+
+    it 'should return a random bolean based in a 1/n proportion', ->
+      percent = Helpers.loadPercentOfTrue -> system.oneIn(3)
+      expect(percent).to.be.within(0.3, 0.365)

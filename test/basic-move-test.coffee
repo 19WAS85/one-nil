@@ -30,7 +30,6 @@ describe 'BasicMove', ->
         attacker: attacker
         blocker: blocker
         swapPlayers: sinon.spy()
-        match: system: randBetween: -> 5
 
     describe 'when attacker succeed', ->
 

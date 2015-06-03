@@ -1,6 +1,7 @@
 class Status
 
   @MATCH_LENGTH = 90
+  @PLAYERS_LUCK = 10
 
   constructor: (@match) ->
     @time = 0
@@ -15,7 +16,8 @@ class Status
     @isGameOver = @time >= Status.MATCH_LENGTH
 
   testPlayers: ->
-    @match.system.test(@attacker.player.att, @blocker.player.def)
+    @match.system.oneIn(Status.PLAYERS_LUCK) or
+      @match.system.test(@attacker.player.att, @blocker.player.def)
 
   swapPlayers: ->
     aux = @attacker

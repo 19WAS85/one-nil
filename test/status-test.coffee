@@ -6,13 +6,14 @@ sinon = require('sinon')
 describe 'Status', ->
   player = player: att: 10
   other = player: def: 12
+  system = null
   match = null
   status = null
 
   beforeEach ->
     home = players: [player], getPlayer: -> player
     away = players: [other], getPlayer: -> other
-    system = test: sinon.spy()
+    system = { }
     match = system: system, home: home, away: away
     status = new Status(match)
 
@@ -50,10 +51,22 @@ describe 'Status', ->
 
   describe '#testPlayers', ->
 
-    beforeEach -> status.testPlayers()
+    beforeEach ->
+      system.oneIn = -> false
+      system.test = sinon.spy()
 
     it 'should test attacker against blocker', ->
-      expect(match.system.test.called).to.be.true
+      status.testPlayers()
+      expect(system.test.called).to.be.true
+
+    describe 'when luck', ->
+
+      beforeEach ->
+        system.test = -> false
+        system.oneIn = -> true
+
+      it 'should return true', ->
+        expect(status.testPlayers()).to.be.true
 
   describe '#swapPlayers', ->
 

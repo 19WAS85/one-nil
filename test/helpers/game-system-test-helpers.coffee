@@ -1,6 +1,6 @@
 class Helpers
 
-  @LOAD_EXECUTION = 1000
+  @LOAD_SIZE = 1000
 
   @MOD_TABLE = [
     [20, 5], [19, 4], [18, 4], [17, 3], [16, 3],
@@ -9,14 +9,14 @@ class Helpers
     [5, -3], [4, -3], [3, -4], [2, -4], [1, -5]
   ]
 
-  @loadToGetLimits = (func) ->
-    max = Number.MIN_VALUE
-    min = Number.MAX_VALUE
-    for i in [0..@LOAD_EXECUTION]
-      do ->
-        value = func()
-        max = Math.max(value, max)
-        min = Math.min(value, min)
-    min: min, max: max
+  @loadToGetLimits: (func) ->
+    results = @load(func)
+    min: Math.min.apply(Math, results), max: Math.max.apply(Math, results)
+
+  @loadPercentOfTrue: (func) ->
+    results = @load(func)
+    results.filter((e) -> e).length / results.length
+
+  @load: (func) -> [0..@LOAD_SIZE].map -> func()
 
 module.exports = Helpers

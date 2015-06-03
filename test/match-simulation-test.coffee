@@ -1,3 +1,5 @@
+console.log(new Date())
+
 expect = require('chai').expect
 Helpers = require('./helpers/match-test-helpers')
 
