@@ -1,6 +1,6 @@
 {
   "name": "one-nil",
-  "description": "A open-source football (soccer) managament casual game made with pure javascript",
+  "description": "A open-source football (soccer) management casual game made with coffeescript/javascript",
   "author": "Wagner Andrade <wagneras@live.com>",
   "private": true,
   "scripts": {
