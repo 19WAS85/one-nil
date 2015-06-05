@@ -6,6 +6,7 @@ class Selection
 
   constructor: (@system, @players) ->
 
-  createSquad: -> new Squad(@system, @players.slice(0, Selection.PLAYERS_SIZE))
+  createSquad: ->
+    new Squad(@system, @players.slice(0, Selection.PLAYERS_SIZE))
 
 module.exports = Selection

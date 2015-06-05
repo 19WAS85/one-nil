@@ -1,9 +1,9 @@
 class Squad
 
-  constructor: (@gameSystem, players) ->
+  constructor: (@system, players) ->
     squad = this
     @players = players.map (p) -> player: p, squad: squad
 
-  getPlayer: -> @gameSystem.randElement(@players)
+  getPlayer: -> @system.randElement(@players)
 
 module.exports = Squad
