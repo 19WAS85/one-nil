@@ -7,6 +7,12 @@ class Selection
   constructor: (@system, @players) ->
 
   createSquad: ->
-    new Squad(@system, @players.slice(0, Selection.PLAYERS_SIZE))
+    attackers = @slicedPlayersBy(5, (p) -> p.att).reverse()
+    blockers = @slicedPlayersBy(6, (p) -> p.def).reverse()
+    new Squad(@system, blockers.concat(attackers))
+
+  slicedPlayersBy: (size, func) -> @allPlayersBy(func).slice(0, size)
+
+  allPlayersBy: (func) -> @players.sort((a, b) -> func(b) - func(a))
 
 module.exports = Selection
