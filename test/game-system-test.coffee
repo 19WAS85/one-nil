@@ -30,11 +30,15 @@ describe 'GameSystem', ->
       expect(limits.min).to.be.equal(GameSystem.MIN_ATTR)
       expect(limits.max).to.be.equal(GameSystem.MAX_ATTR)
 
-  describe '#attrMod', ->
+  describe '#mod', ->
 
     it 'should return the modificator of an attribute value', ->
       Helpers.MOD_TABLE.forEach (e) ->
         expect(system.mod(e[0])).to.be.equal(e[1])
+
+    it 'should limit attribute value', ->
+      expect(system.mod(42)).to.be.equal(5)
+      expect(system.mod(-10)).to.be.equal(-5)
 
   describe '#test', ->
 

@@ -12,7 +12,10 @@ class GameSystem
 
   rand: -> @randBetween(GameSystem.MIN_ATTR, GameSystem.MAX_ATTR)
 
-  mod: (value) -> Math.floor(value / 2 - GameSystem.FOURTH_ATTR)
+  mod: (value) -> Math.floor(@limit(value) / 2 - GameSystem.FOURTH_ATTR)
+
+  limit: (value) ->
+    Math.min(Math.max(value, GameSystem.MIN_ATTR), GameSystem.MAX_ATTR)
 
   test: (attribute, target) ->
     attributePlay = @rand() + @mod(attribute)
