@@ -6,4 +6,6 @@ class Squad
 
   getPlayer: -> @system.randElement(@players)
 
+  getKeeper: -> @players[0]
+
 module.exports = Squad

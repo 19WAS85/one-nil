@@ -1,5 +1,3 @@
-console.log(new Date())
-
 expect = require('chai').expect
 
 { GameSystem, Selection, BasicMove, Finishing, Match } = require('../index')

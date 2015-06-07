@@ -5,14 +5,19 @@ sinon = require('sinon')
 
 describe 'Status', ->
   player = player: att: 10
-  other = player: def: 12, kp: 13
+  other = player: def: 12
+  keeper = player: kp: 13
   system = null
   match = null
   status = null
 
   beforeEach ->
     home = players: [player], getPlayer: -> player
-    away = players: [other], getPlayer: -> other
+    away =
+      players: [keeper, other]
+      getPlayer: -> other
+      getKeeper: -> keeper
+    other.squad = away
     system = { }
     match = system: system, home: home, away: away
     status = new Status(match)
@@ -73,6 +78,10 @@ describe 'Status', ->
     beforeEach ->
       system.oneIn = -> false
       system.test = sinon.spy()
+
+    it 'should get keeper to be the blocker', ->
+      status.attackerVsKeeper()
+      expect(status.blocker).to.be.equals(keeper)
 
     it 'should test attacker against keeper', ->
       status.attackerVsKeeper()

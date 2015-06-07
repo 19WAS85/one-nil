@@ -19,6 +19,7 @@ class Status
     @luck() or @match.system.test(@attacker.player.att, @blocker.player.def)
 
   attackerVsKeeper: ->
+    @blocker = @blocker.squad.getKeeper()
     @luck() or @match.system.test(@attacker.player.att, @blocker.player.kp)
 
   luck: -> @match.system.oneIn(Status.PLAYERS_LUCK)

@@ -8,7 +8,7 @@ describe 'Squad', ->
   squad = null
 
   beforeEach ->
-    players = [{ }, { }]
+    players = [{ name: 'P1' }, { }]
     system = randElement: sinon.spy()
     squad = new Squad(system, players)
 
@@ -26,3 +26,8 @@ describe 'Squad', ->
     it 'should return an player', ->
       squad.getPlayer()
       expect(system.randElement.calledWith(squad.players)).to.be.true
+
+  describe '#getKeeper', ->
+
+    it 'should return first player of squad', ->
+      expect(squad.getKeeper().player.name).to.be.equal('P1')
