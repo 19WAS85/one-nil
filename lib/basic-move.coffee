@@ -6,7 +6,7 @@ class BasicMove
   isValid: (status) -> status.field < BasicMove.INVALID_FIELD
 
   perform: (status) ->
-    if status.testPlayers()
+    if status.attackerVsBlocker()
       status.field += @fieldGain(status)
       status.attacker = status.attacker.squad.getPlayer()
       status.blocker = status.blocker.squad.getPlayer()

@@ -35,7 +35,7 @@ describe 'BasicMove', ->
     describe 'when attacker succeed', ->
 
       beforeEach ->
-        status.testPlayers = -> true
+        status.attackerVsBlocker = -> true
         move.perform(status)
 
       it 'should move field', ->
@@ -50,7 +50,7 @@ describe 'BasicMove', ->
     describe 'when blocker succeed', ->
 
       beforeEach ->
-        status.testPlayers = -> false
+        status.attackerVsBlocker = -> false
         move.perform(status)
 
       it 'should reset field', ->

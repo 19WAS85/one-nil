@@ -29,6 +29,5 @@ describe 'Selection', ->
       expect(squad.players[0].player.name).to.be.equal('P5')
       expect(squad.players[5].player.name).to.be.equal('P0')
 
-    it 'should avoid duplicated players'
     it 'should return the best keeper in 1st position'
-    it 'should not affect original players array'
+    it 'should avoid duplicated players'

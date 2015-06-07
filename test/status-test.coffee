@@ -49,14 +49,14 @@ describe 'Status', ->
       expect(status.isGameOver).to.be.false
       status.next() until status.isGameOver
 
-  describe '#testPlayers', ->
+  describe '#attackerVsBlocker', ->
 
     beforeEach ->
       system.oneIn = -> false
       system.test = sinon.spy()
 
     it 'should test attacker against blocker', ->
-      status.testPlayers()
+      status.attackerVsBlocker()
       expect(system.test.called).to.be.true
 
     describe 'when luck', ->
@@ -66,7 +66,7 @@ describe 'Status', ->
         system.oneIn = -> true
 
       it 'should return true', ->
-        expect(status.testPlayers()).to.be.true
+        expect(status.attackerVsBlocker()).to.be.true
 
   describe '#swapPlayers', ->
 

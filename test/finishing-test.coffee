@@ -26,7 +26,7 @@ describe 'Finishing', ->
 
       beforeEach ->
         status.isHomeAttacker = -> true
-        status.testPlayers = -> true
+        status.attackerVsBlocker = -> true
         move.perform(status)
 
       it 'should increase score value to home', ->
@@ -37,7 +37,7 @@ describe 'Finishing', ->
 
       beforeEach ->
         status.isHomeAttacker = -> false
-        status.testPlayers = -> true
+        status.attackerVsBlocker = -> true
         move.perform(status)
 
       it 'should increase score value to away', ->
@@ -50,7 +50,7 @@ describe 'Finishing', ->
     describe 'when blocker success', ->
 
       beforeEach ->
-        status.testPlayers = -> false
+        status.attackerVsBlocker = -> false
         move.perform(status)
 
       it 'should not increase score value', ->

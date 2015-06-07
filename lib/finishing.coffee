@@ -6,7 +6,7 @@ class Finishing
   isValid: (status) -> status.field >= Finishing.FIELD_NEEDED
 
   perform: (status) ->
-    if status.testPlayers()
+    if status.attackerVsBlocker()
       isHome = status.isHomeAttacker()
       status.score.home++ if isHome
       status.score.away++ unless isHome

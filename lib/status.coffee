@@ -15,7 +15,7 @@ class Status
     @time++
     @isGameOver = @time >= Status.MATCH_LENGTH
 
-  testPlayers: ->
+  attackerVsBlocker: ->
     @match.system.oneIn(Status.PLAYERS_LUCK) or
       @match.system.test(@attacker.player.att, @blocker.player.def)
 
