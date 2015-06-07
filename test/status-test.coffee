@@ -5,7 +5,7 @@ sinon = require('sinon')
 
 describe 'Status', ->
   player = player: att: 10
-  other = player: def: 12
+  other = player: def: 12, kp: 13
   system = null
   match = null
   status = null
@@ -57,7 +57,7 @@ describe 'Status', ->
 
     it 'should test attacker against blocker', ->
       status.attackerVsBlocker()
-      expect(system.test.called).to.be.true
+      expect(system.test.calledWith(10, 12)).to.be.true
 
     describe 'when luck', ->
 
@@ -67,6 +67,25 @@ describe 'Status', ->
 
       it 'should return true', ->
         expect(status.attackerVsBlocker()).to.be.true
+
+  describe '#attackerVsKeeper', ->
+
+    beforeEach ->
+      system.oneIn = -> false
+      system.test = sinon.spy()
+
+    it 'should test attacker against keeper', ->
+      status.attackerVsKeeper()
+      expect(system.test.calledWith(10, 13)).to.be.true
+
+    describe 'when luck', ->
+
+      beforeEach ->
+        system.test = -> false
+        system.oneIn = -> true
+
+      it 'should return true', ->
+        expect(status.attackerVsKeeper()).to.be.true
 
   describe '#swapPlayers', ->
 

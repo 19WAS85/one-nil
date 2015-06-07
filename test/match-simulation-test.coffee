@@ -1,7 +1,6 @@
 console.log(new Date())
 
 expect = require('chai').expect
-Helpers = require('./helpers/match-test-helpers')
 
 { GameSystem, Squad, BasicMove, Finishing, Match } = require('../index')
 
@@ -10,10 +9,13 @@ describe 'Match Simulation', ->
   TOTAL_MATCHES = 1000
   goals = 0
 
+  createPlayers = (prefix, attr) ->
+    [0...11].map (i) -> name: prefix + i, att: attr, def: attr, kp: attr
+
   [0...TOTAL_MATCHES].forEach ->
     system = new GameSystem()
-    home = new Squad(system, Helpers.createPlayers('H', 10))
-    away = new Squad(system, Helpers.createPlayers('A', 10))
+    home = new Squad(system, createPlayers('H', 10))
+    away = new Squad(system, createPlayers('A', 10))
     moves = [new BasicMove(), new Finishing()]
     match = new Match(system, home, away, moves)
     match.next() until match.status.isGameOver

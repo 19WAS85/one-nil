@@ -16,8 +16,12 @@ class Status
     @isGameOver = @time >= Status.MATCH_LENGTH
 
   attackerVsBlocker: ->
-    @match.system.oneIn(Status.PLAYERS_LUCK) or
-      @match.system.test(@attacker.player.att, @blocker.player.def)
+    @luck() or @match.system.test(@attacker.player.att, @blocker.player.def)
+
+  attackerVsKeeper: ->
+    @luck() or @match.system.test(@attacker.player.att, @blocker.player.kp)
+
+  luck: -> @match.system.oneIn(Status.PLAYERS_LUCK)
 
   swapPlayers: ->
     aux = @attacker
