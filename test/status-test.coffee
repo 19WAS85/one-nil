@@ -6,7 +6,7 @@ sinon = require('sinon')
 describe 'Status', ->
   player = player: att: 10
   other = player: def: 12
-  keeper = player: kp: 13
+  keeper = player: gk: 13
   system = null
   match = null
   status = null

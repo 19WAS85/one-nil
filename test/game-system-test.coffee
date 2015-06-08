@@ -40,6 +40,8 @@ describe 'GameSystem', ->
       expect(system.mod(42)).to.be.equal(5)
       expect(system.mod(-10)).to.be.equal(-5)
 
+    it 'should result lowest mod when attr is undefined'
+
   describe '#test', ->
 
     describe 'in perfect conditions', ->

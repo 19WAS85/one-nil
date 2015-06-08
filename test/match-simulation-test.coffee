@@ -8,7 +8,7 @@ describe 'Match Simulation', ->
   goals = 0
 
   createPlayers = (prefix, attr) ->
-    [0...15].map (i) -> name: prefix + i, att: attr, def: attr, kp: attr
+    [0...15].map (i) -> name: prefix + i, att: attr, def: attr, gk: attr
 
   [0...TOTAL_MATCHES].forEach ->
     system = new GameSystem()
