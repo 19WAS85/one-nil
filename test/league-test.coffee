@@ -23,3 +23,6 @@ describe 'League', ->
       expect(league.rounds[5][0].away).to.be.equal('A')
       expect(league.rounds[9][1].home).to.be.equal('C')
       expect(league.rounds[9][1].away).to.be.equal('D')
+
+    it 'should provide the matches size', ->
+      expect(league.size).to.be.equal(20)
