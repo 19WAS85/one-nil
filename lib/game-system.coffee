@@ -15,7 +15,7 @@ class GameSystem
   mod: (value) -> Math.floor(@limit(value) / 2 - GameSystem.FOURTH_ATTR)
 
   limit: (value) ->
-    Math.min(Math.max(value, GameSystem.MIN_ATTR), GameSystem.MAX_ATTR)
+    Math.min(Math.max(value or 0, GameSystem.MIN_ATTR), GameSystem.MAX_ATTR)
 
   test: (attribute, target) ->
     attributePlay = @rand() + @mod(attribute)

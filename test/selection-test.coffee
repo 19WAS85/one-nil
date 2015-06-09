@@ -31,7 +31,6 @@ describe 'Selection', ->
       expect(squad.players[5].player.name).to.be.equal('P4')
 
     it 'should return the best keeper in 1st position', ->
-      console.log(squad.players.map (p) -> p.player)
       expect(squad.players[0].player.name).to.be.equal('K1')
 
     it 'should avoid duplicated players'
