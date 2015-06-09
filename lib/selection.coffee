@@ -5,13 +5,14 @@ class Selection
   @BLOCKERS = 5
   @ATTACKERS = 5
 
-  constructor: (@system, @players) ->
+  constructor: (@system, @team) ->
+    @players = @team.players.slice()
 
   createSquad: ->
     keeper = @slicedPlayersBy(1, (p) -> p.gk)
     attackers = @slicedPlayersBy(Selection.ATTACKERS, (p) -> p.att).reverse()
     blockers = @slicedPlayersBy(Selection.BLOCKERS, (p) -> p.def)
-    new Squad(@system, keeper.concat(blockers).concat(attackers))
+    new Squad(@system, @team, keeper.concat(blockers).concat(attackers))
 
   slicedPlayersBy: (size, func) -> @allPlayersBy(func).slice(0, size)
 

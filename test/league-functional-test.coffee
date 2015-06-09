@@ -1,0 +1,26 @@
+teams = require('./helpers/barclays-premier-league-teams')
+
+{
+  GameSystem,
+  League,
+  BasicMove,
+  Finishing,
+  Selection,
+  Match
+} = require('../index')
+
+describe 'League Functional', ->
+  system = new GameSystem()
+  moves = [new BasicMove(), new Finishing()]
+  league = new League(teams)
+  league.rounds.forEach (round, index) ->
+    # console.log()
+    # console.log("Round #{index + 1}")
+    round.forEach (event) ->
+      home = new Selection(system, event.home).createSquad()
+      away = new Selection(system, event.away).createSquad()
+      match = new Match(system, home, away, moves)
+      match.next() until match.status.isGameOver
+      # console.log(
+      #   "#{match.home.team.name} #{match.status.score.home} x " +
+      #   "#{match.status.score.away} #{match.away.team.name}")

@@ -4,12 +4,12 @@ expect = require('chai').expect
 
 describe 'Selection', ->
   selection = null
-  players = [0...15].map (i) -> name: "P#{i}", att: 6 + i, def: 20 - i
-  players.push({ name: 'K1', gk: 20 }, { name: 'K12', gk: 10 })
+  team = players: [0...15].map (i) -> name: "P#{i}", att: 6 + i, def: 20 - i
+  team.players.push({ name: 'K1', gk: 20 }, { name: 'K12', gk: 10 })
 
   beforeEach ->
     system = { rand: -> 5 }
-    selection = new Selection(system, players)
+    selection = new Selection(system, team)
 
   describe '#createSquad', ->
     squad = null

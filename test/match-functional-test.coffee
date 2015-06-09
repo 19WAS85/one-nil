@@ -2,7 +2,7 @@ expect = require('chai').expect
 
 { GameSystem, Selection, BasicMove, Finishing, Match } = require('../index')
 
-describe 'Match Simulation', ->
+describe 'Match Functional', ->
 
   TOTAL_MATCHES = 1000
   goals = 0
@@ -12,8 +12,8 @@ describe 'Match Simulation', ->
 
   [0...TOTAL_MATCHES].forEach ->
     system = new GameSystem()
-    home = new Selection(system, createPlayers('H', 10)).createSquad()
-    away = new Selection(system, createPlayers('A', 10)).createSquad()
+    home = new Selection(system, players: createPlayers('H', 10)).createSquad()
+    away = new Selection(system, players: createPlayers('A', 10)).createSquad()
     moves = [new BasicMove(), new Finishing()]
     match = new Match(system, home, away, moves)
     match.next() until match.status.isGameOver

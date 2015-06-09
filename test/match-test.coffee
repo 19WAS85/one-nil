@@ -56,3 +56,7 @@ describe 'Match', ->
       match.next()
       expect(match.status.score.home).to.be.equal(1)
       expect(match.status.score.away).to.be.equal(0)
+
+  describe '#simulate', ->
+
+    it 'should provide the end of the match'

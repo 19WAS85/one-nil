@@ -8,10 +8,11 @@ describe 'Squad', ->
   squad = null
 
   beforeEach ->
+    team = players: []
     players = [name: 'P1']
     [2..11].forEach (i) -> players.push(name: "P#{i}")
     system = randElement: sinon.spy()
-    squad = new Squad(system, players)
+    squad = new Squad(system, team, players)
 
   describe 'constructor', ->
 

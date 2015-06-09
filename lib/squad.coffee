@@ -1,6 +1,6 @@
 class Squad
 
-  constructor: (@system, players) ->
+  constructor: (@system, @team, players) ->
     squad = this
     @players = players.map (p) -> player: p, squad: squad
     @linePlayers = @players.slice(1, 11)

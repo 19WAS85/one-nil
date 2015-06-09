@@ -14,7 +14,8 @@ class League
         rounds[r].push
           home: teams[if home then i else j]
           away: teams[if home then j else i]
-        flag[j].push(flag[i].push(r))
+        flag[j].push(r)
+        flag[i].push(r)
         home = !home
     rounds.forEach (r) -> rounds.push(r.map (e) -> home: e.away, away: e.home)
     rounds
