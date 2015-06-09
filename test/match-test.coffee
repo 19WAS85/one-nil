@@ -59,4 +59,8 @@ describe 'Match', ->
 
   describe '#simulate', ->
 
-    it 'should provide the end of the match'
+    beforeEach -> match.simulate()
+
+    it 'should provide the end of the match', ->
+      expect(match.status.isGameOver).to.be.true
+      expect(match.status.time).to.be.equal(90)

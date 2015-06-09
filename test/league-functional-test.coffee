@@ -20,7 +20,7 @@ describe 'League Functional', ->
       home = new Selection(system, event.home).createSquad()
       away = new Selection(system, event.away).createSquad()
       match = new Match(system, home, away, moves)
-      match.next() until match.status.isGameOver
+      match.simulate()
       # console.log(
       #   "#{match.home.team.name} #{match.status.score.home} x " +
       #   "#{match.status.score.away} #{match.away.team.name}")
