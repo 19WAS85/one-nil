@@ -1,7 +1,8 @@
 class League
 
-  constructor: (@teams) ->
-    @rounds = @schedule(@teams)
+  constructor: (teams) ->
+    @teams = teams.map (t) => team: t, stats: @emptyStats()
+    @rounds = @schedule(teams)
     @size = @rounds.length * @rounds[0].length
 
   schedule: (teams) ->
@@ -21,5 +22,8 @@ class League
         home = !home
     rounds.forEach (r) -> rounds.push(r.map (e) -> home: e.away, away: e.home)
     rounds
+
+  emptyStats: ->
+    points: 0, wins: 0, draws: 0, loses: 0, goals: 0, goalsAgainst: 0, diff: 0
 
 module.exports = League
