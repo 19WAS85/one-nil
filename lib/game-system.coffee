@@ -24,6 +24,6 @@ class GameSystem
 
   randElement: (array) -> array[@randBetween(0, array.length - 1)]
 
-  oneIn: (value) -> @randBetween(1, value) == 1
+  oneIn: (value) -> @randBetween(1, value) is 1
 
 module.exports = GameSystem
