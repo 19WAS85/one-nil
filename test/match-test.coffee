@@ -59,7 +59,7 @@ describe 'Match', ->
         match.simulate()
         expect(match.status.time).to.be.equal(90)
 
-      it 'should update home league stats'      
+      it 'should update home league stats'
       it 'should update away league stats'
 
   describe '#simulate', ->
