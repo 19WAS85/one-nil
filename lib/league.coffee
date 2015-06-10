@@ -1,10 +1,10 @@
 class League
 
   constructor: (teams) ->
-    @teams = teams.map (t) => team: t, stats: @emptyStats()
     @roundIndex = -1
     @isOver = false
-    @schedule(teams)
+    @teams = teams.map (t) => team: t, stats: @emptyStats()
+    @schedule(@teams)
 
   schedule: (teams) ->
     @rounds = [0...teams.length - 1 + teams.length % 2].map -> []

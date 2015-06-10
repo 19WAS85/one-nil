@@ -9,7 +9,7 @@ describe 'Selection', ->
 
   beforeEach ->
     system = { rand: -> 5 }
-    selection = new Selection(system, team)
+    selection = new Selection(system, team: team)
 
   describe '#createSquad', ->
     squad = null

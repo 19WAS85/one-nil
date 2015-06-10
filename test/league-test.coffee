@@ -17,12 +17,12 @@ describe 'League', ->
       expect(league.rounds[0].length).to.be.equal(2)
 
     it 'should provide matches in each round', ->
-      expect(league.rounds[0][0].home).to.be.equal('A')
-      expect(league.rounds[0][0].away).to.be.equal('B')
-      expect(league.rounds[5][0].home).to.be.equal('B')
-      expect(league.rounds[5][0].away).to.be.equal('A')
-      expect(league.rounds[9][1].home).to.be.equal('C')
-      expect(league.rounds[9][1].away).to.be.equal('D')
+      expect(league.rounds[0][0].home.team).to.be.equal('A')
+      expect(league.rounds[0][0].away.team).to.be.equal('B')
+      expect(league.rounds[5][0].home.team).to.be.equal('B')
+      expect(league.rounds[5][0].away.team).to.be.equal('A')
+      expect(league.rounds[9][1].home.team).to.be.equal('C')
+      expect(league.rounds[9][1].away.team).to.be.equal('D')
 
     it 'should provide the matches size', ->
       expect(league.size).to.be.equal(20)
@@ -58,8 +58,8 @@ describe 'League', ->
 
     it 'should provide the next round events', ->
       round = league.next()
-      expect(round[0].home).to.be.equal('A')
-      expect(round[0].away).to.be.equal('B')
+      expect(round[0].home.team).to.be.equal('A')
+      expect(round[0].away.team).to.be.equal('B')
 
     it 'should set league end when all rounds were provided', ->
       expect(league.isOver).to.be.false

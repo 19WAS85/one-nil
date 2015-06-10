@@ -52,14 +52,14 @@ describe 'Match', ->
 
       it 'should provide end of match', ->
         expect(match.status.isOver).to.be.false
-        match.next() until match.status.isOver
+        match.simulate()
         expect(match.status.isOver).to.be.true
 
       it 'should end at 90 minutes', ->
-        match.next() until match.status.isOver
+        match.simulate()
         expect(match.status.time).to.be.equal(90)
 
-      it 'should update home league stats'
+      it 'should update home league stats'      
       it 'should update away league stats'
 
   describe '#simulate', ->

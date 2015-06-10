@@ -12,8 +12,10 @@ describe 'Match Functional', ->
 
   [0...TOTAL_MATCHES].forEach ->
     system = new GameSystem()
-    home = new Selection(system, players: createPlayers('H', 10)).createSquad()
-    away = new Selection(system, players: createPlayers('A', 10)).createSquad()
+    homeTeam = team: players: createPlayers('H', 10)
+    awayTeam = team: players: createPlayers('A', 10)
+    home = new Selection(system, homeTeam).createSquad()
+    away = new Selection(system, awayTeam).createSquad()
     moves = [new BasicMove(), new Finishing()]
     match = new Match(system, home, away, moves)
     match.simulate()

@@ -23,5 +23,5 @@ describe 'League Functional', ->
       match = new Match(system, home, away, moves)
       match.simulate()
       # console.log(
-      #   "#{match.home.team.name} #{match.status.score.home} x " +
-      #   "#{match.status.score.away} #{match.away.team.name}")
+      #   "#{match.home.team.team.name} #{match.status.score.home} x " +
+      #   "#{match.status.score.away} #{match.away.team.team.name}")
