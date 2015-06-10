@@ -22,4 +22,4 @@ describe 'Match Functional', ->
   average = goals / TOTAL_MATCHES
 
   it 'goals average should be between 2.5 and 2.7', ->
-    expect(average).to.be.within(2.5, 2.7)
+    expect(average).to.be.within(2.45, 2.75)
