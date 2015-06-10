@@ -11,6 +11,6 @@ class Match
     @getNextMove().perform(@status)
     @status.next()
 
-  simulate: -> @next() until @status.isGameOver
+  simulate: -> @next() until @status.isOver
 
 module.exports = Match

@@ -31,7 +31,7 @@ describe 'Status', ->
       expect(status.field).to.be.equal(0)
 
     it 'should have no game over', ->
-      expect(status.isGameOver).to.be.false
+      expect(status.isOver).to.be.false
 
     it 'should have scores zero', ->
       expect(status.score.home).to.be.equal(0)
@@ -51,8 +51,8 @@ describe 'Status', ->
       expect(status.time).to.be.equal(1)
 
     it 'should ckeck if match is over', ->
-      expect(status.isGameOver).to.be.false
-      status.next() until status.isGameOver
+      expect(status.isOver).to.be.false
+      status.next() until status.isOver
 
   describe '#attackerVsBlocker', ->
 

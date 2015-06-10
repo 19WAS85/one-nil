@@ -16,7 +16,7 @@ describe 'Match Functional', ->
     away = new Selection(system, players: createPlayers('A', 10)).createSquad()
     moves = [new BasicMove(), new Finishing()]
     match = new Match(system, home, away, moves)
-    match.next() until match.status.isGameOver
+    match.simulate()
     goals += match.status.score.home + match.status.score.away
 
   average = goals / TOTAL_MATCHES

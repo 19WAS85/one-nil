@@ -21,15 +21,6 @@ describe 'Match', ->
       match.next()
       expect(match.status.time).to.be.equal(1)
 
-    it 'should provide end of match', ->
-      expect(match.status.isGameOver).to.be.false
-      match.next() until match.status.isGameOver
-      expect(match.status.isGameOver).to.be.true
-
-    it 'should end at 90 minutes', ->
-      match.next() until match.status.isGameOver
-      expect(match.status.time).to.be.equal(90)
-
     it 'should provide attacker', ->
       match.next()
       expect(match.status.attacker).to.be.equal('player')
@@ -57,10 +48,24 @@ describe 'Match', ->
       expect(match.status.score.home).to.be.equal(1)
       expect(match.status.score.away).to.be.equal(0)
 
+    describe 'when the match is over', ->
+
+      it 'should provide end of match', ->
+        expect(match.status.isOver).to.be.false
+        match.next() until match.status.isOver
+        expect(match.status.isOver).to.be.true
+
+      it 'should end at 90 minutes', ->
+        match.next() until match.status.isOver
+        expect(match.status.time).to.be.equal(90)
+
+      it 'should update home league stats'
+      it 'should update away league stats'
+
   describe '#simulate', ->
 
     beforeEach -> match.simulate()
 
     it 'should provide the end of the match', ->
-      expect(match.status.isGameOver).to.be.true
+      expect(match.status.isOver).to.be.true
       expect(match.status.time).to.be.equal(90)

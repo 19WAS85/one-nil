@@ -6,14 +6,14 @@ class Status
   constructor: (@match) ->
     @time = 0
     @field = 0
-    @isGameOver = no
+    @isOver = no
     @score = { home: 0, away: 0 }
     @attacker = @match.home.getPlayer()
     @blocker = @match.away.getPlayer()
 
   next: ->
     @time++
-    @isGameOver = @time >= Status.MATCH_LENGTH
+    @isOver = @time >= Status.MATCH_LENGTH
 
   attackerVsBlocker: ->
     @luck() or @match.system.test(@attacker.player.att, @blocker.player.def)
