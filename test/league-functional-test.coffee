@@ -13,9 +13,10 @@ describe 'League Functional', ->
   system = new GameSystem()
   moves = [new BasicMove(), new Finishing()]
   league = new League(teams)
-  league.rounds.forEach (round, index) ->
+  until league.isOver
+    round = league.next()
     # console.log()
-    # console.log("Round #{index + 1}")
+    # console.log("Round #{league.roundIndex + 1}")
     round.forEach (event) ->
       home = new Selection(system, event.home).createSquad()
       away = new Selection(system, event.away).createSquad()

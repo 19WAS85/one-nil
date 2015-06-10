@@ -2,6 +2,8 @@ class League
 
   constructor: (teams) ->
     @teams = teams.map (t) => team: t, stats: @emptyStats()
+    @roundIndex = -1
+    @isOver = false
     @schedule(teams)
 
   schedule: (teams) ->
@@ -24,5 +26,9 @@ class League
 
   emptyStats: ->
     points: 0, wins: 0, draws: 0, loses: 0, goals: 0, goalsAgainst: 0, diff: 0
+
+  next: ->
+    @isOver = ++@roundIndex >= @rounds.length - 1
+    @rounds[@roundIndex]
 
 module.exports = League

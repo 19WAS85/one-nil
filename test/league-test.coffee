@@ -6,9 +6,9 @@ describe 'League', ->
   teams = ['A', 'B', 'C', 'D', 'E']
   league = null
 
-  describe 'constructor', ->
+  beforeEach -> league = new League(teams)
 
-    beforeEach -> league = new League(teams)
+  describe 'constructor', ->
 
     it 'should provide a list of rounds', ->
       expect(league.rounds.length).to.be.equal(10)
@@ -54,5 +54,18 @@ describe 'League', ->
       expect(league.teams[0].stats.diff).to.be.equal(0)
 
   describe '#next', ->
+    round = null
 
-    it 'should provide the next round events'
+    it 'should provide the next round events', ->
+      round = league.next()
+      expect(round[0].home).to.be.equal('A')
+      expect(round[0].away).to.be.equal('B')
+
+    it 'should set league end when all rounds were provided', ->
+      expect(league.isOver).to.be.false
+      league.next() until league.isOver
+
+    it 'should provide actual round', ->
+      expect(league.roundIndex).to.be.equal(-1)
+      round = league.next()
+      expect(league.roundIndex).to.be.equal(0)
