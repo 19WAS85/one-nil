@@ -1,3 +1,4 @@
+expect = require('chai').expect
 teams = require('./helpers/barclays-premier-league-teams')
 
 {
@@ -25,3 +26,8 @@ describe 'League Functional', ->
       # console.log(
       #   "#{match.home.team.team.name} #{match.status.score.home} x " +
       #   "#{match.status.score.away} #{match.away.team.team.name}")
+
+  it 'should provide league stats', ->
+    stats = league.teams[0].stats
+    expect(stats.points).to.be.equal(stats.wins * 3 + stats.draws)
+    expect(stats.diff).to.be.equal(stats.goals - stats.goalsAgainst)
