@@ -1,7 +1,7 @@
 class BasicMove
 
   @INVALID_FIELD = 20
-  @FIELD_GAIN = [3.39, 6]
+  @FIELD_GAIN = [5, 7]
 
   isValid: (status) -> status.field < BasicMove.INVALID_FIELD
 

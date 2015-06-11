@@ -1,7 +1,7 @@
 class Status
 
   @MATCH_LENGTH = 90
-  @PLAYERS_LUCK = 5
+  @PLAYERS_LUCK = 20
 
   constructor: (@match) ->
     @time = 0
