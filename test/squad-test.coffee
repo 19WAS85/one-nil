@@ -73,3 +73,10 @@ describe 'Squad', ->
       expect(team.stats.goals).to.be.equal(3)
       expect(team.stats.goalsAgainst).to.be.equal(3)
       expect(team.stats.diff).to.be.equal(0)
+
+    describe 'when no stats', ->
+
+      beforeEach -> team.stats = null
+
+      it 'should not throw error on update', ->
+        squad.updateStats(0, 1)

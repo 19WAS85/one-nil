@@ -12,6 +12,7 @@ class Squad
   getKeeper: -> @players[0]
 
   updateStats: (selfScore, otherScore) ->
+    return unless @team.stats
     @team.stats.goals += selfScore
     @team.stats.goalsAgainst += otherScore
     @team.stats.diff += selfScore - otherScore

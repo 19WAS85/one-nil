@@ -5,12 +5,18 @@ sinon = require('sinon')
 
 describe 'Match', ->
   move = null
+  home = null
+  away = null
   match = null
 
   beforeEach ->
     system = { }
-    home = getPlayer: -> 'player'
-    away = getPlayer: -> 'other'
+    home =
+      getPlayer: -> 'player'
+      updateStats: sinon.spy()
+    away =
+      getPlayer: -> 'other'
+      updateStats: sinon.spy()
     move = isValid: sinon.spy(-> yes), perform: sinon.spy()
     match = new Match(system, home, away, [move])
 
@@ -59,8 +65,11 @@ describe 'Match', ->
         match.simulate()
         expect(match.status.time).to.be.equal(90)
 
-      it 'should update home league stats'
-      it 'should update away league stats'
+      it 'should update league stats', ->
+        match.simulate()
+        expect(home.updateStats.calledOnce).to.be.true
+        expect(away.updateStats.calledOnce).to.be.true
+
 
   describe '#simulate', ->
 
