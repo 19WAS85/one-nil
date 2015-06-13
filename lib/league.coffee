@@ -19,7 +19,7 @@ class League
           away: teams[if home then j else i]
         schedule[j].push(round)
         schedule[i].push(round)
-        home = !home
+        home = not home
     @rounds.forEach (r) =>
       @rounds.push(r.map (e) -> home: e.away, away: e.home)
     @size = @rounds.length * @rounds[0].length

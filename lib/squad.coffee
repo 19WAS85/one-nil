@@ -4,7 +4,7 @@ class Squad
   @DRAW = 1
 
   constructor: (@system, @team, players) ->
-    @players = players.map (p) => player: p, squad: @
+    @players = players.map (p) => player: p, squad: this
     @linePlayers = @players.slice(1, 11)
 
   getPlayer: -> @system.randElement(@linePlayers)

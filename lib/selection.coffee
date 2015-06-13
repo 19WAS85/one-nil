@@ -6,7 +6,7 @@ class Selection
   @ATTACKERS = 5
 
   constructor: (@system, @team) ->
-      @players = @team.team.players.slice()
+    @players = @team.team.players.slice()
 
   createSquad: ->
     keeper = @slicedPlayersBy(1, (p) -> p.gk)
