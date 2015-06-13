@@ -1,10 +1,13 @@
-ONE NIL
+one-nil
 =======
 
 A open-source football (soccer) management casual game made with coffeescript/javascript.
 
-TODO
-----
+ROADMAP
+-------
 
-  - Create coach to influence in squad selection;
-  - Create squad formation to influence in get player from squad;
+  - Player energy and moral
+  - Coach
+  - Squad formation
+  - Player transference
+  - History
