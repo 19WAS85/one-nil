@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ League } = require('../index')
+{ League } = require('../../index')
 
 describe 'League', ->
   teams = ['A', 'B', 'C', 'D', 'E']

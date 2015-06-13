@@ -1,7 +1,7 @@
 expect = require('chai').expect
 sinon = require('sinon')
 
-{ BasicMove } = require('../index')
+{ BasicMove } = require('../../index')
 
 describe 'BasicMove', ->
   move = null

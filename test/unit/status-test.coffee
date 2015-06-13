@@ -1,7 +1,7 @@
 expect = require('chai').expect
 sinon = require('sinon')
 
-{ Status } = require('../index')
+{ Status } = require('../../index')
 
 describe 'Status', ->
   player = player: att: 10

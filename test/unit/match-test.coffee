@@ -1,7 +1,7 @@
 expect = require('chai').expect
 sinon = require('sinon')
 
-{ Match } = require('../index')
+{ Match } = require('../../index')
 
 describe 'Match', ->
   move = null

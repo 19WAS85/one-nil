@@ -1,7 +1,7 @@
 expect = require('chai').expect
-Helpers = require('./helpers/game-system-test-helpers')
+Helpers = require('../helpers/game-system-test-helpers')
 
-{ GameSystem } = require('../index')
+{ GameSystem } = require('../../index')
 
 describe 'GameSystem', ->
   system = null

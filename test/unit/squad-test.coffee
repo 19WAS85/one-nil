@@ -1,7 +1,7 @@
 expect = require('chai').expect
 sinon = require('sinon')
 
-{ Squad } = require('../index')
+{ Squad } = require('../../index')
 
 createEmptyStatus = ->
   points: 0, wins: 0, draws: 0, loses: 0, goals: 0, goalsAgainst: 0, diff: 0

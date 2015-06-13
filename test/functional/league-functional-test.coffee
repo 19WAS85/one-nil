@@ -1,5 +1,5 @@
 expect = require('chai').expect
-teams = require('./helpers/barclays-premier-league-teams')
+teams = require('../helpers/barclays-premier-league-teams')
 
 {
   GameSystem,
@@ -8,7 +8,7 @@ teams = require('./helpers/barclays-premier-league-teams')
   Finishing,
   Selection,
   Match
-} = require('../index')
+} = require('../../index')
 
 statsOf = (league, func) ->
   league.teams.map((t) -> t.stats).forEach (s) -> func(s)

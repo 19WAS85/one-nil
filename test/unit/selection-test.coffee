@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ Selection } = require('../index')
+{ Selection } = require('../../index')
 
 describe 'Selection', ->
   selection = null

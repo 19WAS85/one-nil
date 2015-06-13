@@ -4,8 +4,10 @@
   "author": "Wagner Andrade <wagneras@live.com>",
   "private": true,
   "scripts": {
-    "lint": "./node_modules/.bin/coffeelint ./lib/*.coffee",
-    "test": "./node_modules/.bin/mocha"
+    "test:unit": "./node_modules/.bin/mocha test/unit/*-test.coffee",
+    "test:functional": "./node_modules/.bin/mocha test/functional/*-test.coffee",
+    "lint": "./node_modules/.bin/coffeelint lib/*.coffee",
+    "test": "npm run test:unit && npm run test:functional && npm run lint"
   },
   "devDependencies": {
     "chai": "^2.2.0",

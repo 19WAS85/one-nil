@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ Finishing } = require('../index')
+{ Finishing } = require('../../index')
 
 describe 'Finishing', ->
   move = new Finishing()

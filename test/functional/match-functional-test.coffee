@@ -1,6 +1,6 @@
 expect = require('chai').expect
 
-{ GameSystem, Selection, BasicMove, Finishing, Match } = require('../index')
+{ GameSystem, Selection, BasicMove, Finishing, Match } = require('../../index')
 
 describe 'Match Functional', ->
 
