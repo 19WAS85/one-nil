@@ -10,6 +10,9 @@ teams = require('./helpers/barclays-premier-league-teams')
   Match
 } = require('../index')
 
+statsOf = (league, func) ->
+  league.teams.map((t) -> t.stats).forEach (s) -> func(s)
+
 describe 'League Functional', ->
   system = new GameSystem()
   moves = [new BasicMove(), new Finishing()]
@@ -27,7 +30,14 @@ describe 'League Functional', ->
       #   "#{match.home.team.team.name} #{match.status.score.home} x " +
       #   "#{match.status.score.away} #{match.away.team.team.name}")
 
-  it 'should provide league stats', ->
-    stats = league.teams[0].stats
-    expect(stats.points).to.be.equal(stats.wins * 3 + stats.draws)
-    expect(stats.diff).to.be.equal(stats.goals - stats.goalsAgainst)
+  it 'should provide team points', ->
+    statsOf league, (stats) ->
+      expect(stats.points).to.be.equal(stats.wins * 3 + stats.draws)
+
+  it 'should provide team goals', ->
+    statsOf league, (stats) ->
+      expect(stats.diff).to.be.equal(stats.goals - stats.goalsAgainst)
+
+  it 'should provide team matches count', ->
+    statsOf league, (stats) ->
+      expect(stats.wins + stats.draws + stats.loses).to.be.equal(38)
