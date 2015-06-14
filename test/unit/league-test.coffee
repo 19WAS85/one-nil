@@ -69,3 +69,19 @@ describe 'League', ->
       expect(league.roundIndex).to.be.equal(-1)
       round = league.next()
       expect(league.roundIndex).to.be.equal(0)
+
+  describe '#standings', ->
+    standings = null
+
+    beforeEach ->
+      league.teams[0].stats.points = 2
+      league.teams[1].stats.points = 3
+      league.teams[2].stats.points = 0
+      league.teams[3].stats.points = 4
+      league.teams[4].stats.points = 1
+      standings = league.standings()
+
+    it 'should provide stats sorted by points', ->
+      expect(standings[0].team).to.be.equal('D')
+      expect(standings[1].team).to.be.equal('B')
+      expect(standings[4].team).to.be.equal('C')

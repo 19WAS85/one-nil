@@ -29,6 +29,9 @@ describe 'League Functional', ->
       # console.log(
       #   "#{match.home.team.team.name} #{match.status.score.home} x " +
       #   "#{match.status.score.away} #{match.away.team.team.name}")
+  # console.log()
+  # league.standings().forEach (t, i) ->
+  #   console.log("#{(i + 1)} #{t.team.name} #{t.stats.points}")
 
   it 'should provide team points', ->
     statsOf league, (stats) ->

@@ -31,4 +31,6 @@ class League
     @isOver = ++@roundIndex >= @rounds.length - 1
     @rounds[@roundIndex]
 
+  standings: -> @teams.slice().sort (a, b) -> b.stats.points - a.stats.points
+
 module.exports = League
