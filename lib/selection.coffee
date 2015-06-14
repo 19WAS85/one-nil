@@ -14,7 +14,12 @@ class Selection
     blockers = @slicedPlayersBy(Selection.BLOCKERS, (p) -> p.def)
     new Squad(@system, @team, keeper.concat(blockers).concat(attackers))
 
-  slicedPlayersBy: (size, func) -> @allPlayersBy(func).slice(0, size)
+  slicedPlayersBy: (size, func) ->
+    selectedPlayers = @allPlayersBy(func).slice(0, size)
+    @players = @purgePlayers(selectedPlayers)
+    selectedPlayers
+
+  purgePlayers: (array) -> @players.filter (p) -> array.indexOf(p) is -1
 
   allPlayersBy: (func) ->
     @players.sort((a, b) -> (func(b) or 0) - (func(a) or 0))
