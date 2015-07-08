@@ -1,5 +1,5 @@
 expect = require('chai').expect
-teams = require('../helpers/barclays-premier-league-teams')
+teams = require('../helpers/teams.json')
 
 {
   GameSystem,
