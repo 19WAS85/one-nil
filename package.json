@@ -4,9 +4,9 @@
   "author": "Wagner Andrade <wagneras@live.com>",
   "private": true,
   "scripts": {
-    "test:unit": "./node_modules/.bin/mocha test/unit/*-test.coffee",
-    "test:watch": "./node_modules/.bin/mocha -w test/unit/*-test.coffee --reporter dot",
-    "test:functional": "./node_modules/.bin/mocha test/functional/*-test.coffee",
+    "test:unit": "mocha test/unit/*-test.coffee",
+    "test:watch": "mocha -w test/unit/*-test.coffee --reporter dot",
+    "test:functional": "mocha test/functional/*-test.coffee",
     "lint": "./node_modules/.bin/coffeelint lib/*.coffee",
     "test": "npm run test:unit && npm run test:functional && npm run lint"
   },
