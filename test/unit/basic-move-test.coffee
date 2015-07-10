@@ -11,11 +11,11 @@ describe 'BasicMove', ->
 
   describe '#isValid', ->
 
-    it 'should be valid when field lower than 20', ->
+    it 'should be valid until it arrives in the end of field', ->
       expect(move.isValid(field: 1)).to.be.true
       expect(move.isValid(field: 19)).to.be.true
 
-    it 'should not be valid when field equal or greater than 20', ->
+    it 'should not be valid when it arrives in the end of field', ->
       expect(move.isValid(field: 20)).to.be.false
       expect(move.isValid(field: 25)).to.be.false
 

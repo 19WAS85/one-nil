@@ -7,11 +7,11 @@ describe 'Finishing', ->
 
   describe '#isValid', ->
 
-    it 'should be true when field is equals or greater than 20', ->
+    it 'should be valid when it arrives in the end of field', ->
       expect(move.isValid(field: 20)).to.be.true
       expect(move.isValid(field: 23)).to.be.true
 
-    it 'should be false when field is lower than 20', ->
+    it 'should not be valid until it arrives in the end of field', ->
       expect(move.isValid(field: 19)).to.be.false
       expect(move.isValid(field: 15)).to.be.false
 
@@ -57,5 +57,5 @@ describe 'Finishing', ->
         expect(context.score.home).to.be.equals(0)
         expect(context.score.away).to.be.equals(0)
 
-      it 'should decrease field in 5', ->
+      it 'should decrease field', ->
         expect(context.field).to.be.equals(5)
