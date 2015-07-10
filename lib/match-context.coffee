@@ -1,4 +1,4 @@
-class Status
+class MatchContext
 
   @MATCH_LENGTH = 90
   @PLAYERS_LUCK = 20
@@ -13,7 +13,7 @@ class Status
 
   next: ->
     @time++
-    @isOver = @time >= Status.MATCH_LENGTH
+    @isOver = @time >= MatchContext.MATCH_LENGTH
 
   attackerVsBlocker: ->
     @luck() or @match.system.test(@attacker.player.att, @blocker.player.def)
@@ -22,7 +22,7 @@ class Status
     @blocker = @blocker.squad.getKeeper()
     @luck() or @match.system.test(@attacker.player.att, @blocker.player.gk)
 
-  luck: -> @match.system.oneIn(Status.PLAYERS_LUCK)
+  luck: -> @match.system.oneIn(MatchContext.PLAYERS_LUCK)
 
   swapPlayers: ->
     aux = @attacker
@@ -31,4 +31,4 @@ class Status
 
   isHomeAttacker: -> @match.home.players.indexOf(@attacker) isnt -1
 
-module.exports = Status
+module.exports = MatchContext

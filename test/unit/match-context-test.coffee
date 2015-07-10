@@ -1,15 +1,15 @@
 expect = require('chai').expect
 sinon = require('sinon')
 
-{ Status } = require('../../index')
+{ MatchContext } = require('../../index')
 
-describe 'Status', ->
+describe 'MatchContext', ->
   player = player: att: 10
   other = player: def: 12
   keeper = player: gk: 13
   system = null
   match = null
-  status = null
+  context = null
 
   beforeEach ->
     home = players: [player], getPlayer: -> player
@@ -20,39 +20,39 @@ describe 'Status', ->
     other.squad = away
     system = { }
     match = system: system, home: home, away: away
-    status = new Status(match)
+    context = new MatchContext(match)
 
   describe '#constructor', ->
 
     it 'should have time zero', ->
-      expect(status.time).to.be.equal(0)
+      expect(context.time).to.be.equal(0)
 
     it 'should have field zero', ->
-      expect(status.field).to.be.equal(0)
+      expect(context.field).to.be.equal(0)
 
     it 'should have no game over', ->
-      expect(status.isOver).to.be.false
+      expect(context.isOver).to.be.false
 
     it 'should have scores zero', ->
-      expect(status.score.home).to.be.equal(0)
-      expect(status.score.away).to.be.equal(0)
+      expect(context.score.home).to.be.equal(0)
+      expect(context.score.away).to.be.equal(0)
 
     it 'should select an attacker', ->
-      expect(status.attacker).to.be.equal(player)
+      expect(context.attacker).to.be.equal(player)
 
     it 'should select a blocker', ->
-      expect(status.blocker).to.be.equal(other)
+      expect(context.blocker).to.be.equal(other)
 
   describe '#next', ->
 
-    beforeEach -> status.next()
+    beforeEach -> context.next()
 
     it 'should increase time', ->
-      expect(status.time).to.be.equal(1)
+      expect(context.time).to.be.equal(1)
 
     it 'should ckeck if match is over', ->
-      expect(status.isOver).to.be.false
-      status.next() until status.isOver
+      expect(context.isOver).to.be.false
+      context.next() until context.isOver
 
   describe '#attackerVsBlocker', ->
 
@@ -61,7 +61,7 @@ describe 'Status', ->
       system.test = sinon.spy()
 
     it 'should test attacker against blocker', ->
-      status.attackerVsBlocker()
+      context.attackerVsBlocker()
       expect(system.test.calledWith(10, 12)).to.be.true
 
     describe 'when luck', ->
@@ -71,7 +71,7 @@ describe 'Status', ->
         system.oneIn = -> true
 
       it 'should return true', ->
-        expect(status.attackerVsBlocker()).to.be.true
+        expect(context.attackerVsBlocker()).to.be.true
 
   describe '#attackerVsKeeper', ->
 
@@ -80,11 +80,11 @@ describe 'Status', ->
       system.test = sinon.spy()
 
     it 'should get keeper to be the blocker', ->
-      status.attackerVsKeeper()
-      expect(status.blocker).to.be.equals(keeper)
+      context.attackerVsKeeper()
+      expect(context.blocker).to.be.equals(keeper)
 
     it 'should test attacker against keeper', ->
-      status.attackerVsKeeper()
+      context.attackerVsKeeper()
       expect(system.test.calledWith(10, 13)).to.be.true
 
     describe 'when luck', ->
@@ -94,22 +94,22 @@ describe 'Status', ->
         system.oneIn = -> true
 
       it 'should return true', ->
-        expect(status.attackerVsKeeper()).to.be.true
+        expect(context.attackerVsKeeper()).to.be.true
 
   describe '#swapPlayers', ->
 
     beforeEach ->
-      status.swapPlayers()
+      context.swapPlayers()
 
     it 'should switch attacker and blocker', ->
-      expect(status.attacker).to.be.equal(other)
-      expect(status.blocker).to.be.equal(player)
+      expect(context.attacker).to.be.equal(other)
+      expect(context.blocker).to.be.equal(player)
 
   describe '#isHomeAttacker', ->
 
     it 'should be true when attacker is from home squad', ->
-      expect(status.isHomeAttacker()).to.be.true
+      expect(context.isHomeAttacker()).to.be.true
 
     it 'should be false when attacker is from away squad', ->
-      status.swapPlayers()
-      expect(status.isHomeAttacker()).to.be.false
+      context.swapPlayers()
+      expect(context.isHomeAttacker()).to.be.false

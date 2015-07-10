@@ -20,12 +20,12 @@ describe 'BasicMove', ->
       expect(move.isValid(field: 25)).to.be.false
 
   describe '#perform', ->
-    status = null
+    context = null
     attacker = squad: getPlayer: -> 'other'
     blocker = squad: getPlayer: -> 'another'
 
     beforeEach ->
-      status =
+      context =
         field: 5
         attacker: attacker
         blocker: blocker
@@ -35,26 +35,26 @@ describe 'BasicMove', ->
     describe 'when attacker succeed', ->
 
       beforeEach ->
-        status.attackerVsBlocker = -> true
-        move.perform(status)
+        context.attackerVsBlocker = -> true
+        move.perform(context)
 
       it 'should move field', ->
-        expect(status.field).to.be.equal(10)
+        expect(context.field).to.be.equal(10)
 
       it 'should change attacker', ->
-        expect(status.attacker).to.be.equal('other')
+        expect(context.attacker).to.be.equal('other')
 
       it 'should change blocker', ->
-        expect(status.blocker).to.be.equal('another')
+        expect(context.blocker).to.be.equal('another')
 
     describe 'when blocker succeed', ->
 
       beforeEach ->
-        status.attackerVsBlocker = -> false
-        move.perform(status)
+        context.attackerVsBlocker = -> false
+        move.perform(context)
 
       it 'should reset field', ->
-        expect(status.field).to.be.equal(0)
+        expect(context.field).to.be.equal(0)
 
       it 'should swap players', ->
-        expect(status.swapPlayers.called).to.be.true
+        expect(context.swapPlayers.called).to.be.true

@@ -1,19 +1,19 @@
-{ Status } = require('../index')
+{ MatchContext } = require('../index')
 
 class Match
 
   constructor: (@system, @home, @away, @moves) ->
-    @status = new Status(this)
+    @context = new MatchContext(this)
 
-  getNextMove: -> @moves.filter((m) => m.isValid(@status))[0]
+  getNextMove: -> @moves.filter((m) => m.isValid(@context))[0]
 
   next: ->
-    @getNextMove().perform(@status)
-    @status.next()
-    if @status.isOver
-      @home.updateStats(@status.score.home, @status.score.away)
-      @away.updateStats(@status.score.away, @status.score.home)
+    @getNextMove().perform(@context)
+    @context.next()
+    if @context.isOver
+      @home.updateStats(@context.score.home, @context.score.away)
+      @away.updateStats(@context.score.away, @context.score.home)
 
-  simulate: -> @next() until @status.isOver
+  simulate: -> @next() until @context.isOver
 
 module.exports = Match

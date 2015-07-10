@@ -16,46 +16,46 @@ describe 'Finishing', ->
       expect(move.isValid(field: 15)).to.be.false
 
   describe '#perform', ->
-    status = null
+    context = null
 
     beforeEach ->
       attacker = 'player'
-      status = field: 10, score: home: 0, away: 0
+      context = field: 10, score: home: 0, away: 0
 
     describe 'when home attackers success', ->
 
       beforeEach ->
-        status.isHomeAttacker = -> true
-        status.attackerVsKeeper = -> true
-        move.perform(status)
+        context.isHomeAttacker = -> true
+        context.attackerVsKeeper = -> true
+        move.perform(context)
 
       it 'should increase score value to home', ->
-        expect(status.score.home).to.be.equals(1)
-        expect(status.score.away).to.be.equals(0)
+        expect(context.score.home).to.be.equals(1)
+        expect(context.score.away).to.be.equals(0)
 
     describe 'when away attackers success', ->
 
       beforeEach ->
-        status.isHomeAttacker = -> false
-        status.attackerVsKeeper = -> true
-        move.perform(status)
+        context.isHomeAttacker = -> false
+        context.attackerVsKeeper = -> true
+        move.perform(context)
 
       it 'should increase score value to away', ->
-        expect(status.score.home).to.be.equals(0)
-        expect(status.score.away).to.be.equals(1)
+        expect(context.score.home).to.be.equals(0)
+        expect(context.score.away).to.be.equals(1)
 
       it 'should reset field', ->
-        expect(status.field).to.be.equals(0)
+        expect(context.field).to.be.equals(0)
 
     describe 'when blocker success', ->
 
       beforeEach ->
-        status.attackerVsKeeper = -> false
-        move.perform(status)
+        context.attackerVsKeeper = -> false
+        move.perform(context)
 
       it 'should not increase score value', ->
-        expect(status.score.home).to.be.equals(0)
-        expect(status.score.away).to.be.equals(0)
+        expect(context.score.home).to.be.equals(0)
+        expect(context.score.away).to.be.equals(0)
 
       it 'should decrease field in 5', ->
-        expect(status.field).to.be.equals(5)
+        expect(context.field).to.be.equals(5)

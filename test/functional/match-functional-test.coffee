@@ -20,7 +20,7 @@ describe 'Match Functional', ->
     moves = [new BasicMove(), new Finishing()]
     match = new Match(system, home, away, moves)
     match.simulate()
-    goals += match.status.score.home + match.status.score.away
+    goals += match.context.score.home + match.context.score.away
 
   average = goals / TOTAL_MATCHES
 

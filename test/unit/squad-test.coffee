@@ -3,7 +3,7 @@ sinon = require('sinon')
 
 { Squad } = require('../../index')
 
-createEmptyStatus = ->
+createEmptyStats = ->
   points: 0, wins: 0, draws: 0, loses: 0, goals: 0, goalsAgainst: 0, diff: 0
 
 describe 'Squad', ->
@@ -12,7 +12,7 @@ describe 'Squad', ->
   squad = null
 
   beforeEach ->
-    stats = createEmptyStatus()
+    stats = createEmptyStats()
     team = stats: stats, team: players: []
     players = [name: 'P1']
     [2..11].forEach (i) -> players.push(name: "P#{i}")

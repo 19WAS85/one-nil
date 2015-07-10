@@ -28,8 +28,8 @@ describe 'League Functional', ->
       match = new Match(system, home, away, moves)
       match.simulate()
       log.info(
-        "#{match.home.team.team.name} #{match.status.score.home} x " +
-        "#{match.status.score.away} #{match.away.team.team.name}")
+        "#{match.home.team.team.name} #{match.context.score.home} x " +
+        "#{match.context.score.away} #{match.away.team.team.name}")
   log.info()
   league.standings().forEach (t, i) ->
     log.info("#{(i + 1)} #{t.team.name} #{t.stats.points}")

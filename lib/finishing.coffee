@@ -3,15 +3,15 @@ class Finishing
   @FIELD_NEEDED = 20
   @NO_SCORE_FIELD = -5
 
-  isValid: (status) -> status.field >= Finishing.FIELD_NEEDED
+  isValid: (context) -> context.field >= Finishing.FIELD_NEEDED
 
-  perform: (status) ->
-    if status.attackerVsKeeper()
-      isHome = status.isHomeAttacker()
-      status.score.home++ if isHome
-      status.score.away++ unless isHome
-      status.field = 0
+  perform: (context) ->
+    if context.attackerVsKeeper()
+      isHome = context.isHomeAttacker()
+      context.score.home++ if isHome
+      context.score.away++ unless isHome
+      context.field = 0
     else
-      status.field += Finishing.NO_SCORE_FIELD
+      context.field += Finishing.NO_SCORE_FIELD
 
 module.exports = Finishing
