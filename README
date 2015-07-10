@@ -1,13 +1,25 @@
 one-nil
 =======
 
-A open-source football (soccer) management casual game made with coffeescript/javascript.
+A open-source football (soccer) management casual game made with coffeescript/javascript (work in progress).
 
-ROADMAP
+How to?
 -------
 
-  - Player energy and moral;
+Right now the one-nil project is a class library with a basic teams/players/league iteration. You can follow these steps to take a look in this lib in action:
+
+  1. install dependencies and run tests:
+
+    npm install
+    npm test
+
+  2. open the `functional-test.log` file to see a league in action.
+
+What is next?
+-------------
+
   - Coach (and human iteration);
-  - Squad formation;
+  - Player energy and moral;
   - Player transference;
   - Player/team/league historic;
+  - Squad formation;
