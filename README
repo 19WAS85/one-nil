@@ -6,8 +6,8 @@ A open-source football (soccer) management casual game made with coffeescript/ja
 ROADMAP
 -------
 
-  - Player energy and moral
-  - Coach
-  - Squad formation
-  - Player transference
-  - History
+  - Player energy and moral;
+  - Coach (and human iteration);
+  - Squad formation;
+  - Player transference;
+  - Player/team/league historic;
