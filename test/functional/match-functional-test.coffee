@@ -1,4 +1,5 @@
 expect = require('chai').expect
+log = require('../helpers/functional-log')('Match')
 
 { GameSystem, Selection, BasicMove, Finishing, Match } = require('../../index')
 
@@ -22,6 +23,8 @@ describe 'Match Functional', ->
     goals += match.status.score.home + match.status.score.away
 
   average = goals / TOTAL_MATCHES
+
+  log.info("average-goals=#{average}")
 
   it 'goals average should be between 2.5 and 2.7', ->
     expect(average).to.be.within(2.45, 2.75)
