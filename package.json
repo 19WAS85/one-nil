@@ -1,13 +1,14 @@
 {
   "name": "one-nil",
-  "description": "A open-source football (soccer) management casual game made with coffeescript/javascript (work in progress)",
+  "description": "An open-source football (soccer) casual management game made with coffeescript/javascript (work in progress)",
   "author": "Wagner Andrade <wagneras@live.com>",
+  "keywords": ["game", "casual", "football", "soccer", "management", "open-source"],
   "private": true,
   "scripts": {
     "test:unit": "mocha test/unit/*-test.coffee",
     "test:watch": "mocha -w test/unit/*-test.coffee --reporter dot",
     "test:functional": "mocha test/functional/*-test.coffee --no-exit",
-    "lint": "./node_modules/.bin/coffeelint lib/*.coffee",
+    "lint": "coffeelint lib/*.coffee",
     "test": "npm run test:unit && npm run test:functional && npm run lint"
   },
   "devDependencies": {
